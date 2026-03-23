@@ -28,7 +28,7 @@ const Navbar = () => {
     const buttonRef = useRef(null);
     const abortRef = useRef(null);
 
-    const base = "http://localhost:5000";
+    const base = "https://luxeride-rantals.onrender.com";
     const api = axios.create({
         baseURL: base,
         headers: { Accept: "application/json" },
