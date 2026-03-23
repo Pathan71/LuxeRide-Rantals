@@ -474,7 +474,6 @@ const MyBookings = () => {
       };
 
       const response = await axios.get(`${API_BASE}/api/bookings/mybooking`, {
-        userId: user._id,
         headers,
         signal: controller.signal,
       });
