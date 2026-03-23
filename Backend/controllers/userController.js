@@ -99,7 +99,7 @@ export async function login(req, res) {
             message: 'Login Successful!',
             token,
             user: {
-                id: user._id,
+                _id: user._id,
                 name: user.name,
                 email: user.email
             },

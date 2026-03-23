@@ -86,7 +86,7 @@ export const createBooking = async (req, res) => {
         }
 
         const bookingData = {
-            userId: req?.user?.id || req.user?._id || null,   // for particular User
+            userId: req.user._id,  // for particular User
             customer, email, phone,
             car: carSummary,
             carImage: carImage || carSummary.image || "",
