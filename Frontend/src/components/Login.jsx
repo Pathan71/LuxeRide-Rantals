@@ -30,7 +30,7 @@ const Login = () => {
         e.preventDefault()
         setLoading(true);
         try {
-            const base = ' https://luxeride-rantals.onrender.com';
+            const base = 'https://luxeride-rantals.onrender.com';
             const url = `${base}/api/auth/login`;
 
             const res = await axios.post(url, credentials, {

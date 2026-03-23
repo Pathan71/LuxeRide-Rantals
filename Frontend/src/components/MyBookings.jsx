@@ -7,7 +7,7 @@ import {
 } from "react-icons/fa";
 import { myBookingsStyles as s } from "../assets/dummyStyles";
 
-const API_BASE = " https://luxeride-rantals.onrender.com";
+const API_BASE = "https://luxeride-rantals.onrender.com";
 const TIMEOUT = 15000;
 
 // ---------- Helpers ----------
