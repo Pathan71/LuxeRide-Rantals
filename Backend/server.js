@@ -22,7 +22,7 @@ connectDB();
 
 // MIDDLEWARES
 app.use(cors({
-    origin: "http://localhost:5173" || "http://localhost:5174", // frontend origin (use correct port)
+    origin: "https://luxe-ride-rantals.vercel.app" || "http://localhost:5173" || "http://localhost:5174", // frontend origin (use correct port)
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true
 }))
