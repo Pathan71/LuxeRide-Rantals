@@ -38,7 +38,7 @@ const deleteLocalFileIfPresent = (filePath) => {
 }
 
 // CREATE BOOKING
-export const createBooking = async (req, res) => {  
+export const createBooking = async (req, res) => {
     const session = await mongoose.startSession();
     session.startTransaction();
 
@@ -178,18 +178,22 @@ export const getBookings = async (req, res, next) => {
 }
 
 // GET BOOKING FOR A PARTICULAR USER
-export const getMyBookings = async (req, res, next) => {
+export const getMyBookings = async (req, res) => {
     try {
-        if (!req.user   || (!req.user.id && !req.user._id))
+        if (!req.user || !req.user._id)
             return res.status(401).json({ success: false, message: 'Unauthorized' })
 
-        const userId = req.user._id || req.user.id
+        // const userId = req.user._id
         console.log(userId)
-        const bookings = (await bookingModel.find({ userId })).sort({ bookingDate: -1 }).lean()
+        const bookings = (await bookingModel.find({ userId: req.user._id })).sort({ bookingDate: -1 }).lean()
         res.json(bookings)
     }
     catch (err) {
-        next(err);
+        console.error("GET MY BOOKINGS ERROR:", err);
+        res.status(500).json({
+            success: false,
+            message: err.message
+        });
     }
 }
 
