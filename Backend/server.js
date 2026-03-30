@@ -22,7 +22,7 @@ connectDB();
 
 // MIDDLEWARES
 app.use(cors({
-    origin: "https://luxe-ride-rantals.vercel.app" || "https://luxe-ride-rantals-l9ll.vercel.app" || "http://localhost:5173", // frontend origin (use correct port)
+    origin: "https://luxe-ride-rantals.vercel.app" || "https://luxe-ride-rantals-l9ll.vercel.app",
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true
 }))
@@ -32,13 +32,6 @@ app.use(helmet({
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
 
-// app.use(
-//     '/uploads', (req, res, next) => {
-//         res.setHeader('Access-Control-Allow-Origin', '*');
-//         next()
-//     },
-//     express.static(path.join(process.cwd(), 'uploads'))
-// )
 
 app.use("/uploads", (req, res, next) => {
   res.setHeader("Cross-Origin-Resource-Policy", "cross-origin", "*");

@@ -180,10 +180,11 @@ export const getBookings = async (req, res, next) => {
 // GET BOOKING FOR A PARTICULAR USER
 export const getMyBookings = async (req, res, next) => {
     try {
-        if (!req.user || (!req.user.id && !req.user._id))
+        if (!req.user   || (!req.user.id && !req.user._id))
             return res.status(401).json({ success: false, message: 'Unauthorized' })
 
         const userId = req.user._id || req.user.id
+        console.log(userId)
         const bookings = (await bookingModel.find({ userId })).sort({ bookingDate: -1 }).lean()
         res.json(bookings)
     }
