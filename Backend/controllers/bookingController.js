@@ -185,12 +185,8 @@ export const getMyBookings = async (req, res, next) => {
 
         const userId = req.user._id
         // console.log(userId)
-        const bookings = (await bookingModel.find({ userId }))
-
-        const sortedBookings = bookings.sort(
-            (a, b) => new Date(b.bookingDate) - new Date(a.bookingDate)
-        );
-        res.json(sortedBookings);
+        const bookings = (await bookingModel.find({ userId })).sort({ bookingDate: -1 }).lean()
+        res.json(bookings)
     }
     catch (err) {
         console.error("GET MY BOOKINGS ERROR:", err);
