@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useParams, useLocation, useNavigate } from "react-router-dom";
-import { FaUserFriends, FaGasPump, FaTachometerAlt, FaCheckCircle, FaCalendarAlt, FaPhone, FaEnvelope, FaUser, FaArrowLeft, FaCreditCard, FaMapMarkerAlt, FaCity, FaGlobeAsia, FaMapPin,
+import {
+  FaUserFriends, FaGasPump, FaTachometerAlt, FaCheckCircle, FaCalendarAlt, FaPhone, FaEnvelope, FaUser, FaArrowLeft, FaCreditCard, FaMapMarkerAlt, FaCity, FaGlobeAsia, FaMapPin,
 } from "react-icons/fa";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -234,7 +235,7 @@ const CarDetail = () => {
         zipCode: "",
       });
       navigate("/bookings");
-    } 
+    }
     catch (err) {
       const canceled =
         err?.code === "ERR_CANCELED" ||
@@ -257,7 +258,7 @@ const CarDetail = () => {
     ? String(car.transmission).toLowerCase()
     : "standard";
 
-    // below here this is UI PART 
+  // below here this is UI PART 
   return (
     <div className={carDetailStyles.pageContainer}>
       <div className={carDetailStyles.contentContainer}>
@@ -646,7 +647,7 @@ const CarDetail = () => {
 
                 {/* PRICD CALCULATION */}
                 <div className={carDetailStyles.priceBreakdown}>
-                  <div className={carDetailStyles.priceRow}> 
+                  <div className={carDetailStyles.priceRow}>
                     <span>Rate/day</span>
                     <span>${price}</span>
                   </div>
@@ -673,7 +674,7 @@ const CarDetail = () => {
                   </span>
                 </button>
               </form>
-            </div> 
+            </div>
           </div>
         </div>
       </div>

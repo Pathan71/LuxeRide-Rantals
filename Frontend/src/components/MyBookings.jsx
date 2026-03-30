@@ -149,6 +149,7 @@ const normalizeBooking = (booking) => {
   } catch {
     normalized.status = normalized.status || "upcoming";
   }
+  setBookings(normalized)
 
   return normalized;
 };
