@@ -479,13 +479,19 @@ const MyBookings = () => {
         signal: controller.signal,
       });
 
+      // const rawData = Array.isArray(response.data)
+      //   ? response.data
+      //   : response.data?.data ||
+      //   response.data?.bookings ||
+      //   response.data?.rows ||
+      //   response.data ||
+      //   [];
+
       const rawData = Array.isArray(response.data)
         ? response.data
-        : response.data?.data ||
-        response.data?.bookings ||
-        response.data?.rows ||
-        response.data ||
-        [];
+        : Array.isArray(response.data?.data)
+          ? response.data.data
+          : [];
 
       const normalized = (Array.isArray(rawData) ? rawData : []).map(
         normalizeBooking
