@@ -183,9 +183,9 @@ export const getMyBookings = async (req, res) => {
         if (!req.user || !req.user._id)
             return res.status(401).json({ success: false, message: 'Unauthorized' })
 
-        // const userId = req.user._id
+        const userId = req.user._id
         console.log(userId)
-        const bookings = (await bookingModel.find({ userId: req.user._id })).sort({ bookingDate: -1 }).lean()
+        const bookings = (await bookingModel.find({ userId })).sort({ bookingDate: -1 }).lean()
         res.json(bookings)
     }
     catch (err) {
