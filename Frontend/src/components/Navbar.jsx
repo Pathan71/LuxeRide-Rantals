@@ -3,7 +3,6 @@ import React, { useState, useEffect, useCallback, useRef } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { FaBars, FaTimes, FaUser, FaSignOutAlt } from "react-icons/fa";
 import logo from "../assets/logocar.png";
-import { navbarStyles as styles } from "../assets/dummyStyles";
 import axios from "axios";
 
 const LOGOUT_ENDPOINT = "/api/auth/logout";
@@ -201,74 +200,74 @@ const Navbar = () => {
 
     return (
         <nav
-            className={`${styles.nav.base} ${scrolled ? styles.nav.scrolled : styles.nav.notScrolled
+            className={`fixed w-full top-0 z-50 transition-all duration-300 ${scrolled ? "py-2" : "py-4"
                 }`}
             aria-label="Main navigation"
         >
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-center">
                     <div
-                        className={`${styles.floatingNav.base} ${scrolled
-                                ? styles.floatingNav.scrolled
-                                : styles.floatingNav.notScrolled
+                        className={`bg-white/95 backdrop-blur-md w-full rounded-full shadow-lg border border-gray-200 transition-all duration-300 ${scrolled
+                                ? "py-2 px-4 md:px-6"
+                                : "py-3 px-5 md:px-8"
                             }`}
                         role="region"
                         aria-roledescription="navigation"
                     >
                         <div className="flex items-center justify-between gap-4">
                             <Link to="/" className="flex items-center">
-                                <div className={styles.logoContainer}>
+                                <div className="flex flex-col items-center text-xl md:text-2xl lg:text-2xl leading-none">
                                     <img
                                         src={logo}
                                         alt="Karzone logo"
                                         className="h-[1em] w-auto block"
                                         style={{ display: "block", objectFit: "contain" }}
                                     />
-                                    <span className={styles.logoText}>LUXERIDE</span>
+                                    <span className="font-bold tracking-wider text-gray-900">LUXERIDE</span>
                                 </div>
                             </Link>
 
-                            <div className={styles.navLinksContainer}>
-                                <div className={styles.navLinksInner}>
+                            <div className="hidden md:flex md:items-center md:justify-center md:flex-1">
+                                <div className="flex items-center space-x-2 md:space-x-4 lg:space-x-6">
                                     {navLinks.map((link, index) => (
                                         <React.Fragment key={link.to}>
                                             <Link
                                                 to={link.to}
-                                                className={`${styles.navLink.base} ${isActive(link.to)
-                                                        ? styles.navLink.active
-                                                        : styles.navLink.inactive
+                                                className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${isActive(link.to)
+                                                        ? "text-purple-600 underline underline-offset-4"
+                                                        : "text-gray-700 hover:text-purple-500"
                                                     }`}
                                             >
                                                 {link.label}
                                             </Link>
 
                                             {index < navLinks.length - 1 && (
-                                                <div className={styles.separator} aria-hidden="true" />
+                                                <div className="hidden md:block h-6 w-px bg-gray-300 mx-2" aria-hidden="true" />
                                             )}
                                         </React.Fragment>
                                     ))}
                                 </div>
                             </div>
 
-                            <div className={styles.userActions}>
+                            <div className="hidden md:flex md:items-center md:justify-end md:gap-4">
                                 {isLoggedIn ? (
                                     <button
                                         onClick={handleLogout}
-                                        className={styles.authButton}
+                                        className="flex items-center gap-2 cursor-pointer text-gray-700 hover:text-purple-500 transition-colors focus:outline-none focus:ring-2 focus:ring-purple-300 rounded-md px-3 py-2"
                                         aria-label="Logout"
                                         title={user?.name || "Logout"}
                                     >
                                         <FaSignOutAlt className="text-base" />
-                                        <span className={styles.authText}>Logout</span>
+                                        <span className="text-sm font-medium">Logout</span>
                                     </button>
                                 ) : (
                                     <Link
                                         to="/login"
-                                        className={styles.authButton}
+                                        className="flex items-center gap-2 cursor-pointer text-gray-700 hover:text-purple-500 transition-colors focus:outline-none focus:ring-2 focus:ring-purple-300 rounded-md px-3 py-2"
                                         aria-label="Login"
                                     >
                                         <FaUser className="text-base" />
-                                        <span className={styles.authText}>Login</span>
+                                        <span className="text-sm font-medium">Login</span>
                                     </Link>
                                 )}
                             </div>
@@ -277,7 +276,7 @@ const Navbar = () => {
                                 <button
                                     ref={buttonRef}
                                     onClick={() => setIsOpen((p) => !p)}
-                                    className={styles.mobileMenuButton}
+                                    className="p-2 rounded-md text-gray-700 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-purple-400"
                                     aria-expanded={isOpen}
                                     aria-controls="mobile-menu"
                                     aria-label={isOpen ? "Close menu" : "Open menu"}
@@ -297,21 +296,21 @@ const Navbar = () => {
             <div
                 id="mobile-menu"
                 ref={menuRef}
-                className={`${styles.mobileMenu.container} ${isOpen ? styles.mobileMenu.open : styles.mobileMenu.closed
+                className={`md:hidden transition-all duration-200 overflow-hidden ${isOpen ? "max-h-[400px] opacity-100" : "max-h-0 opacity-0 pointer-events-none"
                     }`}
                 aria-hidden={!isOpen}
             >
-                <div className={styles.mobileMenuInner}>
+                <div className="bg-white border-t border-gray-200 shadow-lg mt-2 rounded-b-lg mx-3">
                     <div className="px-4 pt-3 pb-4 space-y-2">
-                        <div className={styles.mobileGrid}>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                             {navLinks.map((link) => (
                                 <Link
                                     key={link.to}
                                     to={link.to}
                                     onClick={() => setIsOpen(false)}
-                                    className={`${styles.mobileLink.base} ${isActive(link.to)
-                                            ? styles.mobileLink.active
-                                            : styles.mobileLink.inactive
+                                    className={`block w-full text-left px-4 py-3 rounded-lg text-sm font-medium transition-colors ${isActive(link.to)
+                                            ? "bg-gray-50 text-purple-600"
+                                            : "text-gray-700 hover:bg-gray-50"
                                         }`}
                                 >
                                     {link.label}
@@ -319,13 +318,13 @@ const Navbar = () => {
                             ))}
                         </div>
 
-                        <div className={styles.divider} />
+                        <div className="border-t border-gray-100 my-1" />
 
                         <div className="pt-1">
                             {isLoggedIn ? (
                                 <button
                                     onClick={handleLogout}
-                                    className={styles.mobileAuthButton}
+                                    className="w-full flex items-center px-4 py-3 text-left rounded-lg text-gray-700 hover:bg-gray-50 transition-colors"
                                 >
                                     <FaSignOutAlt className="mr-3 text-base" />
                                     Logout
@@ -334,7 +333,7 @@ const Navbar = () => {
                                 <Link
                                     to="/login"
                                     onClick={() => setIsOpen(false)}
-                                    className={styles.mobileAuthButton}
+                                    className="w-full flex items-center px-4 py-3 text-left rounded-lg text-gray-700 hover:bg-gray-50 transition-colors"
                                 >
                                     <FaUser className="mr-3 text-base" />
                                     Login

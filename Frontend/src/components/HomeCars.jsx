@@ -24,7 +24,7 @@ const HomeCars = () => {
   const [hoveredCard, setHoveredCard] = useState(null);
   const abortRef = useRef(null);
 
-  const base = "https://luxeride-rantals.onrender.com";
+  const base = "http://localhost:5000";
   const api = axios.create({
     baseURL: base,
     headers: { Accept: "application/json" },
@@ -39,7 +39,7 @@ const HomeCars = () => {
       clearTimeout(t);
       try {
         abortRef.current?.abort();
-      } catch {}
+      } catch { }
     };
   }, []);
 
@@ -48,7 +48,7 @@ const HomeCars = () => {
     setError("");
     try {
       abortRef.current?.abort();
-    } catch {}
+    } catch { }
     const ctrl = new AbortController();
     abortRef.current = ctrl;
     try {
@@ -266,14 +266,14 @@ const HomeCars = () => {
         Available
       </span>
     );
-  }; 
+  };
 
   const isBookDisabled = (car) => {
     const effective = computeEffectiveAvailability(car);
     if (car?.status && car.status !== "available") return true;
     if (!effective) return false;
     return effective.state === "booked";
-  }; 
+  };
   // WE GET DISABLE ON BOOKING AS IT IS BOOKED
 
   const handleBook = (car) => {
@@ -283,16 +283,18 @@ const HomeCars = () => {
 
   // IT IS PART OF UI
   return (
-    <div className={styles.container}>
-      <div className={styles.headerContainer}>
-        <div className={styles.premiumBadge}>
-          <Zap className="w-4 h-4 text-amber-400 mr-2" />
-          <span className={styles.premiumText}>Premium Fleet Selection</span>
+    <div className="relative w-full overflow-hidden py-16 bg-black text-gray-100 min-h-screen">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-16">
+        <div className="inline-flex items-center px-4 py-2 rounded-full bg-gray-800/50 backdrop-blur-sm border border-gray-700 mb-4">
+          <Zap className="w-4 h-4 text-purple-400 mr-2" />
+          <span className="text-sm font-medium text-purple-400">Premium Fleet Selection</span>
         </div>
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 w-full">
           <div className="w-full text-center">
-            <h1 className={styles.title}>Luxury Car Collection</h1>
-            <p className={styles.subtitle}>
+            <h1 className="text-4xl py-2 font-[pacifico] md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-indigo-500 to-purple-600 mb-4">
+              Luxury Car Collection
+            </h1>
+            <p className="max-w-2xl mx-auto text-lg text-gray-400">
               Discover premium vehicles with exceptional performance and comfort
               for your next journey
             </p>
@@ -300,26 +302,25 @@ const HomeCars = () => {
         </div>
       </div>
 
-      <div className={styles.grid}>
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
         {loading &&
           Array.from({ length: limit }).map((_, idx) => (
             <div
               key={`s-${idx}`}
-              className={`${styles.card} border ${
-                styles.borderGradients?.[
-                  idx % (styles.borderGradients?.length || 1)
+              className={`relative rounded-2xl overflow-hidden shadow-2xl transform-gpu transition-all duration-500 ease-out group border ${styles.borderGradients?.[
+                idx % (styles.borderGradients?.length || 1)
                 ] || ""
-              } opacity-50 animate-pulse`}
+                } opacity-50 animate-pulse`}
               style={{
                 clipPath:
                   "polygon(0% 15%, 15% 0%, 100% 0%, 100% 85%, 85% 100%, 0% 100%)",
               }}
             >
-              <div className={styles.borderOverlay}></div>
-              <div className={styles.imageContainer}>
+              <div className="absolute inset-0 rounded-2xl border border-gray-700/50 pointer-events-none"></div>
+              <div className="relative h-48 sm:h-52 md:h-60 overflow-hidden">
                 <div className="w-full h-full bg-gray-200" />
               </div>
-              <div className={styles.content}>
+              <div className="p-6 relative z-10">
                 <div className="h-6 bg-gray-200 rounded w-3/4 mb-2" />
                 <div className="h-4 bg-gray-200 rounded w-1/4 mb-4" />
                 <div className="grid grid-cols-4 gap-2">
@@ -330,7 +331,7 @@ const HomeCars = () => {
                 </div>
                 <div className="h-10 bg-gray-200 rounded mt-4" />
               </div>
-              <div className={styles.accentBlur}></div>
+              <div className="absolute -top-1 -right-1 w-10 h-10 rounded-bl-full bg-sky-500/30 blur-xl"></div>
             </div>
           ))}
 
@@ -367,7 +368,7 @@ const HomeCars = () => {
                 key={car._id || car.id || idx}
                 onMouseEnter={() => setHoveredCard(car._id || car.id)}
                 onMouseLeave={() => setHoveredCard(null)}
-                className={`${styles.card} ${patternStyle} border ${borderStyle} hover:shadow-2xl hover:-translate-y-3`}
+                className={`relative rounded-2xl overflow-hidden shadow-2xl transform-gpu transition-all duration-500 ease-out group ${patternStyle} border ${borderStyle} hover:shadow-2xl hover:-translate-y-3`}
                 style={{
                   clipPath:
                     "polygon(0% 15%, 15% 0%, 100% 0%, 100% 85%, 85% 100%, 0% 100%)",
@@ -380,10 +381,10 @@ const HomeCars = () => {
                   transitionDelay,
                 }}
               >
-                <div className={styles.borderOverlay}></div>
+                <div className="absolute inset-0 rounded-2xl border border-gray-700/50 pointer-events-none"></div>
 
-                <div className={styles.priceBadge}>
-                  <span className={styles.priceText}>
+                <div className="absolute top-40 md:top-50 lg:top-50 right-4 z-20 bg-gray-900/80 backdrop-blur-md text-white px-3 py-1.5 rounded-full font-bold text-sm shadow-lg flex items-center">
+                  <span className="bg-gradient-to-r from-purple-400 to-indigo-500 bg-clip-text text-transparent font-semibold">
                     ₹{car.dailyRate ?? car.price ?? 0}/day
                   </span>
                 </div>
@@ -392,7 +393,7 @@ const HomeCars = () => {
                   {renderAvailabilityBadge(car.availability, car)}
                 </div>
 
-                <div className={styles.imageContainer}>
+                <div className="relative h-48 sm:h-52 md:h-60 overflow-hidden">
                   <img
                     src={imageSrc}
                     alt={carName}
@@ -407,22 +408,22 @@ const HomeCars = () => {
                   />
                 </div>
 
-                <div className={styles.content}>
+                <div className="p-6 relative z-10">
                   <div className="flex justify-between items-start mb-3">
                     <div>
-                      <h3 className={styles.carName}>{carName}</h3>
-                      <p className={styles.carInfoContainer}>
-                        <span className={styles.carTypeBadge}>
+                      <h3 className="text-xl font-bold text-white">{carName}</h3>
+                      <p className="text-gray-400 flex items-center mt-1">
+                        <span className="bg-gray-800 text-purple-400 px-2.5 py-1 rounded-full mr-2 text-xs font-medium">
                           {car.category || "Sedan"}
                         </span>
-                        <span className={styles.carYear}>
+                        <span className="text-gray-500 text-sm">
                           {car.year || "—"}
                         </span>
                       </p>
                     </div>
                   </div>
 
-                  <div className={styles.specsGrid}>
+                  <div className="grid grid-cols-4 gap-3 my-5">
                     {[
                       { icon: Users, value: car.seats || "4", label: "Seats" },
                       {
@@ -441,7 +442,7 @@ const HomeCars = () => {
                         label: "Trans",
                       },
                     ].map((spec, i) => (
-                      <div key={i} className={styles.specItem}>
+                      <div key={i} className="flex flex-col items-center">
                         <div
                           className={styles.specIconContainer(
                             hoveredCard === (car._id || car.id)
@@ -453,19 +454,18 @@ const HomeCars = () => {
                             )}
                           />
                         </div>
-                        <span className={styles.specValue}>{spec.value}</span>
-                        <span className={styles.specLabel}>{spec.label}</span>
+                        <span className="text-xs font-medium text-gray-300">{spec.value}</span>
+                        <span className="text-[10px] text-gray-500 mt-0.5">{spec.label}</span>
                       </div>
                     ))}
                   </div>
 
                   <button
                     onClick={() => handleBook(car)}
-                    className={`${styles.bookButton} ${
-                      disabled
+                    className={`bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 shadow-purple-500/20 inline-flex items-center gap-3 px-5 py-3 rounded-lg font-medium transform-gpu hover:scale-[1.03] active:scale-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-purple-400 cursor-pointer ${disabled
                         ? "opacity-60 cursor-not-allowed"
                         : "hover:shadow-md"
-                    }`}
+                      }`}
                     disabled={disabled}
                     aria-disabled={disabled}
                     title={
@@ -474,14 +474,14 @@ const HomeCars = () => {
                         : "Book this car"
                     }
                   >
-                    <span className={styles.buttonText}>
+                    <span className="relative z-10 flex items-center">
                       {disabled ? "Unavailable" : "Book Now"}
                       <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
                     </span>
                   </button>
                 </div>
 
-                <div className={styles.accentBlur}></div>
+                <div className="absolute -top-1 -right-1 w-10 h-10 rounded-bl-full bg-purple-500/30 blur-xl"></div>
               </div>
             );
           })}

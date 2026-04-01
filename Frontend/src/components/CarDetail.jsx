@@ -9,7 +9,7 @@ import axios from "axios";
 import carsData from "../assets/carsData";
 import { carDetailStyles } from "../assets/dummyStyles";
 
-const API_BASE = "https://luxeride-rantals.onrender.com";
+const API_BASE = "http://localhost:5000";
 const api = axios.create({
   baseURL: API_BASE,
   headers: { Accept: "application/json" },
@@ -260,27 +260,27 @@ const CarDetail = () => {
 
   // below here this is UI PART 
   return (
-    <div className={carDetailStyles.pageContainer}>
-      <div className={carDetailStyles.contentContainer}>
+    <div className="relative min-h-screen overflow-hidden py-6 px-4 sm:px-6 lg:px-8 bg-black">
+      <div className="relative z-10 max-w-7xl mx-auto">
         <ToastContainer />
         <button
           onClick={() => navigate(-1)}
-          className={carDetailStyles.backButton}
+          className="absolute top-1 cursor-pointer left-4 p-2 bg-gray-800 rounded-full shadow hover:shadow-lg z-20 border border-gray-700 hover:bg-gray-700 transition-all"
         >
-          <FaArrowLeft className={carDetailStyles.backButtonIcon} />
+          <FaArrowLeft className="text-purple-400 text-lg" />
         </button>
 
-        <div className={carDetailStyles.mainLayout}>
-          <div className={carDetailStyles.leftColumn}>
-            <div className={carDetailStyles.imageCarousel}>
+        <div className="pt-12 flex flex-col lg:flex-row gap-8">
+          <div className="lg:w-2/3 space-y-6">
+            <div className="relative rounded-2xl overflow-hidden shadow-lg border border-gray-700">
               <img
                 src={buildImageSrc(carImages[currentImage] ?? car.image)}
                 alt={car.name}
-                className={carDetailStyles.carImage}
+                className="w-full h-64 sm:h-80 md:h-96 object-cover"
                 onError={(e) => handleImageError(e)}
               />
               {(carImages.length > 0 || (car.image && car.image !== "")) && (
-                <div className={carDetailStyles.carouselIndicators}>
+                <div className="absolute bottom-4 right-4 flex space-x-2">
                   {(carImages.length > 0 ? carImages : [car.image]).map(
                     (_, idx) => (
                       <button
@@ -297,19 +297,21 @@ const CarDetail = () => {
               )}
             </div>
 
-            <h1 className={carDetailStyles.carName}>{car.make}</h1>
-            <p className={carDetailStyles.carPrice}>
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-indigo-500 to-purple-600">
+              {car.make}
+            </h1>
+            <p className="text-xl sm:text-2xl md:text-3xl font-bold text-green-400">
               ${price}{" "}
-              <span className={carDetailStyles.pricePerDay}>/ day</span>
+              <span className="text-base sm:text-lg font-normal text-gray-400">/ day</span>
             </p>
 
-            <div className={carDetailStyles.specsGrid}>
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
               {[
                 {
                   Icon: FaUserFriends,
                   label: "Seats",
                   value: car.seats ?? "—",
-                  color: "text-orange-400",
+                  color: "text-purple-400",
                 },
                 {
                   Icon: FaGasPump,
@@ -327,35 +329,35 @@ const CarDetail = () => {
                   Icon: FaCheckCircle,
                   label: "Transmission",
                   value: transmissionLabel,
-                  color: "text-purple-400",
+                  color: "text-orange-400",
                 },
               ].map((spec, i) => (
-                <div key={i} className={carDetailStyles.specCard}>
+                <div key={i} className="lex flex-col items-center bg-gray-800/60 backdrop-blur-sm p-3 sm:p-4 rounded-xl border border-gray-700 hover:border-purple-500 transition-all">
                   <spec.Icon
-                    className={`${spec.color} ${carDetailStyles.specIcon}`}
+                    className={`${spec.color} text-xl sm:text-2xl mb-2`}
                   />
                   <p
                     className={
-                      carDetailStyles.aboutText +
+                      "text-gray-300 text-sm sm:text-base" +
                       " " +
-                      carDetailStyles.specLabel
+                      "text-xs sm:text-sm text-gray-400"
                     }
                   >
                     {spec.label}
                   </p>
-                  <p className={carDetailStyles.specValue}>{spec.value}</p>
+                  <p className="font-semibold text-base sm:text-lg text-white">{spec.value}</p>
                 </div>
               ))}
             </div>
 
-            <div className={carDetailStyles.aboutSection}>
-              <h2 className={carDetailStyles.aboutTitle}>About this car</h2>
-              <p className={carDetailStyles.aboutText}>
+            <div className="bg-gray-800/60 backdrop-blur-sm p-4 sm:p-6 rounded-xl border border-gray-700 space-y-3">
+              <h2 className="text-xl sm:text-2xl font-semibold text-white">About this car</h2>
+              <p className="text-gray-300 text-sm sm:text-base">
                 Experience luxury in the {car.name}. With its{" "}
                 {transmissionLabel} transmission and seating for{" "}
                 {car.seats ?? "—"}, every journey is exceptional.
               </p>
-              <p className={carDetailStyles.aboutText}>
+              <p className="text-gray-300 text-sm sm:text-base">
                 {car.description ??
                   "This car combines performance and comfort for an unforgettable drive."}
               </p>
@@ -390,24 +392,24 @@ const CarDetail = () => {
           </div>
 
           {/* RIGHT COLUMN */}
-          <div className={carDetailStyles.rightColumn}>
-            <div className={carDetailStyles.bookingCard}>
-              <h2 className={carDetailStyles.bookingTitle}>
+          <div className="lg:w-1/3">
+            <div className="bg-gray-800/70 backdrop-blur-sm p-4 sm:p-6 rounded-2xl border border-gray-700 shadow-xl space-y-4">
+              <h2 className="text-2xl sm:text-2xl font-bold text-white">
                 Reserve{" "}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-500">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-indigo-500">
                   Your Drive
                 </span>
               </h2>
-              <p className={carDetailStyles.bookingSubtitle}>
+              <p className="text-gray-400 text-sm">
                 Fast · Secure · Easy
               </p>
 
-              <form onSubmit={handleSubmit} className={carDetailStyles.form}>
-                <div className={carDetailStyles.grid2}>
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <div className="grid grid-cols-2 gap-3">
                   <div className="flex flex-col">
                     <label
                       htmlFor="pickupDate"
-                      className={carDetailStyles.formLabel}
+                      className="text-xs sm:text-sm text-gray-300 mb-1"
                     >
                       Pickup Date
                     </label>
@@ -416,7 +418,7 @@ const CarDetail = () => {
                         activeField === "pickupDate"
                       )}
                     >
-                      <div className={carDetailStyles.inputIcon}>
+                      <div className="absolute left-3 top-2.5 text-purple-400">
                         <FaCalendarAlt />
                       </div>
                       <input
@@ -429,7 +431,7 @@ const CarDetail = () => {
                         onFocus={() => setActiveField("pickupDate")}
                         onBlur={() => setActiveField(null)}
                         required
-                        className={carDetailStyles.inputField}
+                        className="w-full pl-10 pr-2 py-1.5 sm:py-2 bg-transparent text-gray-200 text-sm sm:text-base outline-none"
                       />
                     </div>
                   </div>
@@ -437,7 +439,7 @@ const CarDetail = () => {
                   <div className="flex flex-col">
                     <label
                       htmlFor="returnDate"
-                      className={carDetailStyles.formLabel}
+                      className="text-xs sm:text-sm text-gray-300 mb-1"
                     >
                       Return Date
                     </label>
@@ -446,7 +448,7 @@ const CarDetail = () => {
                         activeField === "returnDate"
                       )}
                     >
-                      <div className={carDetailStyles.inputIcon}>
+                      <div className="absolute left-3 top-2.5 text-purple-400">
                         <FaCalendarAlt />
                       </div>
                       <input
@@ -459,14 +461,14 @@ const CarDetail = () => {
                         onFocus={() => setActiveField("returnDate")}
                         onBlur={() => setActiveField(null)}
                         required
-                        className={carDetailStyles.inputField}
+                        className="w-full pl-10 pr-3 py-1.5 sm:py-2 bg-transparent text-gray-200 text-sm sm:text-base outline-none"
                       />
                     </div>
                   </div>
                 </div>
 
                 <div className="flex flex-col">
-                  <label className={carDetailStyles.formLabel}>
+                  <label className="text-xs sm:text-sm text-gray-300 mb-1">
                     Pickup Location
                   </label>
                   <div
@@ -474,7 +476,7 @@ const CarDetail = () => {
                       activeField === "pickupLocation"
                     )}
                   >
-                    <div className={carDetailStyles.inputIcon}>
+                    <div className="absolute left-3 top-2.5 text-purple-400">
                       <FaMapMarkerAlt />
                     </div>
                     <input
@@ -486,19 +488,19 @@ const CarDetail = () => {
                       onFocus={() => setActiveField("pickupLocation")}
                       onBlur={() => setActiveField(null)}
                       required
-                      className={carDetailStyles.textInputField}
+                      className="w-full pl-10 pr-3 py-1.5 sm:py-2 bg-transparent text-gray-200 text-sm sm:text-base outline-none"
                     />
                   </div>
                 </div>
 
                 <div className="flex flex-col">
-                  <label className={carDetailStyles.formLabel}>Full Name</label>
+                  <label className="text-xs sm:text-sm text-gray-300 mb-1">Full Name</label>
                   <div
                     className={carDetailStyles.inputContainer(
                       activeField === "name"
                     )}
                   >
-                    <div className={carDetailStyles.inputIcon}>
+                    <div className="absolute left-3 top-2.5 text-purple-400">
                       <FaUser />
                     </div>
                     <input
@@ -510,14 +512,14 @@ const CarDetail = () => {
                       onFocus={() => setActiveField("name")}
                       onBlur={() => setActiveField(null)}
                       required
-                      className={carDetailStyles.textInputField}
+                      className="w-full pl-10 pr-3 py-1.5 sm:py-2 bg-transparent text-gray-200 text-sm sm:text-base outline-none"
                     />
                   </div>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="flex flex-col">
-                    <label className={carDetailStyles.formLabel}>
+                    <label className="text-xs sm:text-sm text-gray-300 mb-1">
                       Email Address
                     </label>
                     <div
@@ -525,7 +527,7 @@ const CarDetail = () => {
                         activeField === "email"
                       )}
                     >
-                      <div className={carDetailStyles.inputIcon}>
+                      <div className="absolute left-3 top-2.5 text-purple-400">
                         <FaEnvelope />
                       </div>
                       <input
@@ -537,13 +539,13 @@ const CarDetail = () => {
                         onFocus={() => setActiveField("email")}
                         onBlur={() => setActiveField(null)}
                         required
-                        className={carDetailStyles.textInputField}
+                        className="w-full pl-10 pr-3 py-1.5 sm:py-2 bg-transparent text-gray-200 text-sm sm:text-base outline-none"
                       />
                     </div>
                   </div>
 
                   <div className="flex flex-col">
-                    <label className={carDetailStyles.formLabel}>
+                    <label className="text-xs sm:text-sm text-gray-300 mb-1">
                       Phone Number
                     </label>
                     <div
@@ -551,7 +553,7 @@ const CarDetail = () => {
                         activeField === "phone"
                       )}
                     >
-                      <div className={carDetailStyles.inputIcon}>
+                      <div className="absolute left-3 top-2.5 text-purple-400">
                         <FaPhone />
                       </div>
                       <input
@@ -563,7 +565,7 @@ const CarDetail = () => {
                         onFocus={() => setActiveField("phone")}
                         onBlur={() => setActiveField(null)}
                         required
-                        className={carDetailStyles.textInputField}
+                        className="w-full pl-10 pr-3 py-1.5 sm:py-2 bg-transparent text-gray-200 text-sm sm:text-base outline-none"
                       />
                     </div>
                   </div>
@@ -571,13 +573,13 @@ const CarDetail = () => {
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   <div className="flex flex-col">
-                    <label className={carDetailStyles.formLabel}>City</label>
+                    <label className="text-xs sm:text-sm text-gray-300 mb-1">City</label>
                     <div
                       className={carDetailStyles.inputContainer(
                         activeField === "city"
                       )}
                     >
-                      <div className={carDetailStyles.inputIcon}>
+                      <div className="absolute left-3 top-2.5 text-purple-400">
                         <FaCity />
                       </div>
                       <input
@@ -589,19 +591,19 @@ const CarDetail = () => {
                         onFocus={() => setActiveField("city")}
                         onBlur={() => setActiveField(null)}
                         required
-                        className={carDetailStyles.textInputField}
+                        className="w-full pl-10 pr-3 py-1.5 sm:py-2 bg-transparent text-gray-200 text-sm sm:text-base outline-none"
                       />
                     </div>
                   </div>
 
                   <div className="flex flex-col">
-                    <label className={carDetailStyles.formLabel}>State</label>
+                    <label className="text-xs sm:text-sm text-gray-300 mb-1">State</label>
                     <div
                       className={carDetailStyles.inputContainer(
                         activeField === "state"
                       )}
                     >
-                      <div className={carDetailStyles.inputIcon}>
+                      <div className="absolute left-3 top-2.5 text-purple-400">
                         <FaGlobeAsia />
                       </div>
                       <input
@@ -613,13 +615,13 @@ const CarDetail = () => {
                         onFocus={() => setActiveField("state")}
                         onBlur={() => setActiveField(null)}
                         required
-                        className={carDetailStyles.textInputField}
+                        className="w-full pl-10 pr-3 py-1.5 sm:py-2 bg-transparent text-gray-200 text-sm sm:text-base outline-none"
                       />
                     </div>
                   </div>
 
                   <div className="flex flex-col">
-                    <label className={carDetailStyles.formLabel}>
+                    <label className="text-xs sm:text-sm text-gray-300 mb-1">
                       ZIP Code
                     </label>
                     <div
@@ -627,7 +629,7 @@ const CarDetail = () => {
                         activeField === "zipCode"
                       )}
                     >
-                      <div className={carDetailStyles.inputIcon}>
+                      <div className="absolute left-3 top-2.5 text-purple-400">
                         <FaMapPin />
                       </div>
                       <input
@@ -639,25 +641,25 @@ const CarDetail = () => {
                         onFocus={() => setActiveField("zipCode")}
                         onBlur={() => setActiveField(null)}
                         required
-                        className={carDetailStyles.textInputField}
+                        className="w-full pl-10 pr-3 py-1.5 sm:py-2 bg-transparent text-gray-200 text-sm sm:text-base outline-none"
                       />
                     </div>
                   </div>
                 </div>
 
                 {/* PRICD CALCULATION */}
-                <div className={carDetailStyles.priceBreakdown}>
-                  <div className={carDetailStyles.priceRow}>
+                <div className="bg-gray-700/40 p-3 rounded-lg text-sm space-y-1 border border-gray-600">
+                  <div className="flex justify-between text-gray-300">
                     <span>Rate/day</span>
                     <span>${price}</span>
                   </div>
                   {formData.pickupDate && formData.returnDate && (
-                    <div className={carDetailStyles.priceRow}>
+                    <div className="flex justify-between text-gray-300">
                       <span>Days</span>
                       <span>{days}</span>
                     </div>
                   )}
-                  <div className={carDetailStyles.totalRow}>
+                  <div className="border-t border-gray-600 pt-1 flex justify-between font-semibold text-white">
                     <span>Total</span>
                     <span>${calculateTotal()}</span>
                   </div>
@@ -666,7 +668,7 @@ const CarDetail = () => {
                 <button
                   type="submit"
                   disabled={submitting}
-                  className={carDetailStyles.submitButton}
+                  className="w-full flex items-center justify-center py-2.5 rounded-lg bg-gradient-to-r from-purple-400 to-indigo-500 cursor-pointer text-white font-bold hover:from-purple-400 hover:to-indigo-500 shadow-purple-500/20 transition-all group"
                 >
                   <FaCreditCard className="mr-2 group-hover:scale-110 transition-transform" />
                   <span>

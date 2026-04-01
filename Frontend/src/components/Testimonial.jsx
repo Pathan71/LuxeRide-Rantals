@@ -1,6 +1,5 @@
 import React from 'react'
 import testimonial from '../assets/Testimonialdata'
-// import { testimonialStyles as styles } from '../assets/dummyStyles'
 import { CarFront, Star } from 'lucide-react'
 import { GiSteeringWheel } from 'react-icons/gi'
 import { FaCar, FaKey, FaMapMarkerAlt, FaQuoteLeft, FaRoad } from 'react-icons/fa'
@@ -12,20 +11,20 @@ const Testimonial = () => {
                 {/* HEADER */}
                 <div className='text-center mb-16'>
                     <div className='inline-flex items-center px-5 py-2 rounded-full bg-gray-800/50 backdrop-blur-sm border border-gray-700 mb-5'>
-                        <CarFront className='text-orange-400 mr-2' />
-                        <span className='text-sm font-medium text-orange-400'>
+                        <CarFront className='text-purple-400 mr-2' />
+                        <span className='text-sm font-medium text-purple-400'>
                             Customer Experiences
                         </span>
                     </div>
 
-                    <h1 className='text-4xl sm:text-5xl md:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-orange-400 to-orange-600 mb-4 font-[pacifico]'>
-                        Premium <span className='text-orange-400'>Drive</span> Experiences
+                    <h1 className='text-4xl sm:text-5xl md:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-indigo-600 mb-4 font-[pacifico]'>
+                        Premium <span className='text-purple-400'>Drive</span> Experiences
                     </h1>
 
                     <div className='flex justify-center items-center mb-5'>
-                        <div className='h-0.5 w-16 sm:w-20 bg-orange-600 rounded-full' />
-                        <GiSteeringWheel className='text-orange-400 mx-4' size={24} />
-                        <div className='h-0.5 w-16 sm:w-20 bg-orange-600 rounded-full' />
+                        <div className='h-0.5 w-16 sm:w-20 bg-purple-600 rounded-full' />
+                        <GiSteeringWheel className='text-purple-400 mx-4' size={24} />
+                        <div className='h-0.5 w-16 sm:w-20 bg-purple-600 rounded-full' />
                     </div>
                     <p className='text-lg text-gray-400 max-w-3xl mx-auto'>
                         Hear from our valued customers about journery with our premium fleet
@@ -41,7 +40,7 @@ const Testimonial = () => {
                         return (
                             <div
                                 key={t.id}
-                                className="relative rounded-2xl overflow-hidden transform transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl border-t-4 border-orange-400"
+                                className="relative rounded-2xl overflow-hidden transform transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl border-t-4 border-purple-400"
                                 style={{
                                     clipPath: "polygon(0% 10%, 10% 0%, 100% 0%, 100% 90%, 90% 100%, 0% 100%)",
                                     background:
@@ -53,12 +52,12 @@ const Testimonial = () => {
                             >
                                 <div className='p-6 sm:p-8 relative z-10'>
                                     <div className='flex justify-between items-start mb-6'>
-                                        <FaQuoteLeft className='text-orange-400' size={28} />
+                                        <FaQuoteLeft className='text-purple-400' size={28} />
                                         {/* RATING */}
                                         <div className='flex'>
                                             {[...Array(5)].map((_, i) => (
                                                 <Star key={i} className={`
-                                                    ${i < t.rating ? 'text-orange-400' : 'text-gary-700'} mr-1`} size={18}
+                                                    ${i < t.rating ? 'text-purple-400' : 'text-gary-700'} mr-1`} size={18}
                                                 />
                                             ))}
                                         </div>
@@ -68,14 +67,14 @@ const Testimonial = () => {
                                     </p>
 
                                     <div className='flex items-center mb-6 bg-gray-800/50 px-4 py-3 rounded-xl'>
-                                        <GiSteeringWheel className='text-orange-400 mr-3' size={20} />
-                                        <span className='font-semibold text-orange-400 text-base'>
+                                        <GiSteeringWheel className='text-purple-400 mr-3' size={20} />
+                                        <span className='font-semibold text-purple-400 text-base'>
                                             {t.car}
                                         </span>
                                     </div>
 
                                     <div className='flex items-center'>
-                                        <div className='bg-gradient-to-br from-orange-500 to-orange-700 w-14 h-14 rounded-full flex items-center justify-center text-white font-bold text-xl'>
+                                        <div className='bg-gradient-to-br from-purple-500 to-indigo-700 w-14 h-14 rounded-full flex items-center justify-center text-white font-bold text-xl'>
                                             {t.name.charAt(0)}
                                         </div>
 
@@ -83,12 +82,12 @@ const Testimonial = () => {
                                             <h3 className='font-bold text-white text-lg'>
                                                 {t.name}
                                             </h3>
-                                            <p className='text-orange-400 text-sm'>{t.role}</p>
+                                            <p className='text-purple-400 text-sm'>{t.role}</p>
                                         </div>
                                     </div>
                                 </div>
 
-                                <div className='absolute top-0 right-0 w-16 h-16 bg-gradient-to-br from-orange-700 to-orange-800 transform translate-x-6 -translate-y-6 rotate-45 opacity-30' />
+                                <div className='absolute top-0 right-0 w-16 h-16 bg-gradient-to-br from-purple-700 to-indigo-800 transform translate-x-6 -translate-y-6 rotate-45 opacity-30' />
 
                                 <div className='absolute bottom-4 right-4 text-gray-700 opacity-10'>
                                     <IconComponent size={36} />
@@ -139,7 +138,7 @@ const Testimonial = () => {
                     <p className='ext-gray-400 max-w-2xl mx-auto font-[pacifico] mb-8'>
                         Join thousands of satisfied customers who have experienced ouur premium fleet and exceptional services.
                     </p>
-                    <a href="/cars" className='bg-gradient-to-r from-orange-600 to-orange-700 hover:from-orange-500 hover:to-orange-600 text-white font-bold py-3 font-[pacifico] px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg shadow-orange-500/20'>
+                    <a href="/cars" className='bg-gradient-to-r from-purple-600 to-indigo-700 hover:from-purple-500 hover:to-indigo-600 text-white font-bold py-3 font-[pacifico] px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg shadow-purple-500/20'>
                         Book Your Luxury Ride
                     </a>
                 </div>

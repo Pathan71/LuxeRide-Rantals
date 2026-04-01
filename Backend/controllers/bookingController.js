@@ -180,23 +180,27 @@ export const getBookings = async (req, res, next) => {
 // GET BOOKING FOR A PARTICULAR USER
 export const getMyBookings = async (req, res, next) => {
     try {
-        if (!req.user || !req.user._id)
+        if (!req.user || !req.user._id) {
             return res.status(401).json({ success: false, message: 'Unauthorized' })
+        }
 
-        const userId = req.user._id
-        // console.log(userId)
-        const bookings = (await bookingModel.find({ userId })).sort({ bookingDate: -1 }).lean()
-        res.json(bookings)
-    }
-    catch (err) {
+        const userId = req.user._id;
+
+        const bookings = await bookingModel
+            .find({ userId })
+            .sort({ bookingDate: -1 })   // ✅ yahi correct jagah hai
+            .lean();
+
+        res.json(bookings);
+
+    } catch (err) {
         console.error("GET MY BOOKINGS ERROR:", err);
         res.status(500).json({
             success: false,
             message: err.message
         });
-        next(err)
     }
-}
+};
 
 // UPDATE FUNCTION
 export const updateBooking = async (req, res, next) => {

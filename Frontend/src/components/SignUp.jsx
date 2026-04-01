@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { signupStyles } from '../assets/dummyStyles'
 import logo from '../assets/logocar.png'
 import { FaArrowLeft, FaCheck, FaEnvelope, FaEye, FaEyeSlash, FaLock, FaUser } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
@@ -37,7 +36,7 @@ const SignUp = () => {
         setLoading(true);
 
         try {
-            const base = 'https://luxeride-rantals.onrender.com';
+            const base = 'http://localhost:5000';
             const url = `${base}/api/auth/register`;
 
             const res = await axios.post(url, formData, {
@@ -110,21 +109,21 @@ const SignUp = () => {
     return (
         <div className='min-h-screen flex items-center justify-center relative overflow-hidden transition-colors duration-500 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white'>
             {/* Animated Background */}
-            <div className={signupStyles.animatedBackground.base}>
+            <div className="absolute inset-0 z-0 overflow-hidden">
                 <div
-                    className={`${signupStyles.animatedBackground.orb1} ${isActive
+                    className={`absolute top-[10%] sm:top-1/4 left-[5%] sm:left-1/5 w-40 h-40 sm:w-52 sm:h-52 md:w-64 md:h-64 rounded-full transition-all duration-1000 bg-gradient-to-r from-purple-400/10 to-indigo-500/10 blur-3xl ${isActive
                         ? "translate-x-10 sm:translate-x-20 translate-y-5 sm:translate-y-10"
                         : ""
                         }`}
                 ></div>
                 <div
-                    className={`${signupStyles.animatedBackground.orb2} ${isActive
+                    className={`absolute top-[75%] sm:top-3/4 right-[5%] sm:right-1/4 w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 rounded-full transition-all duration-1000 bg-gradient-to-r from-purple-400/8 to-indigo-500/8 blur-3xl ${isActive
                         ? "-translate-x-10 sm:-translate-x-20 -translate-y-5 sm:-translate-y-10"
                         : ""
                         }`}
                 ></div>
                 <div
-                    className={`${signupStyles.animatedBackground.orb3} ${isActive
+                    className={`absolute bottom-[15%] sm:bottom-1/3 left-[65%] sm:left-2/3 w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 rounded-full transition-all duration-1000 bg-gradient-to-r from-purple-300/8 to-indigo-500/10 blur-3xl ${isActive
                         ? "-translate-x-5 sm:-translate-x-10 translate-y-10 sm:translate-y-20"
                         : ""
                         }`}
@@ -143,8 +142,8 @@ const SignUp = () => {
                         boxShadow: "0 15px 35px rgba(0,0,0,0.2)",
                         borderRadius: "24px"
                     }}>
-                    <div className='absolute -top-6 sm:-top-8 -right-6 sm:-right-8 w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 rounded-full bg-gradient-to-r from-orange-300/10 to-orange-400/10 blur-2xl z-0' />
-                    <div className='absolute -bottom-4 sm:-bottom-6 -left-4 sm:-left-6 w-20 h-20 sm:w-22 sm:h-22 md:w-24 md:h-24 rounded-full bg-gradient-to-r from-orange-200/8 to-orange-300/10 blur-2xl z-0' />
+                    <div className='absolute -top-6 sm:-top-8 -right-6 sm:-right-8 w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 rounded-full bg-gradient-to-r from-purple-400/10 to-indigo-500/10 blur-2xl z-0' />
+                    <div className='absolute -bottom-4 sm:-bottom-6 -left-4 sm:-left-6 w-20 h-20 sm:w-22 sm:h-22 md:w-24 md:h-24 rounded-full bg-gradient-to-r from-purple-300/8 to-indigo-300/10 blur-2xl z-0' />
 
                     <div className='relative z-10 text-center mb-6 sm:mb-8'>
                         <div className='mx-auto mb-4 w-24 h-24 sm:w-28 sm:h-28 rounded-full flex items-center justify-center'>
@@ -156,14 +155,14 @@ const SignUp = () => {
                                     }}
                                 />
                                 <span className='font-bold tracking-wider text-white mt-1'>
-                                    KARZONE
+                                    LUXERIDE
                                 </span>
                             </div>
                         </div>
-                        <h1 className='text-2xl sm:text-3xl md:text-4xl font-bold mt-2 sm:mt-3 md:mt-4 tracking-tight bg-gradient-to-r from-orange-300 to-white bg-clip-text text-transparent'>
+                        <h1 className='text-2xl sm:text-3xl md:text-4xl font-bold mt-2 sm:mt-3 md:mt-4 tracking-tight bg-gradient-to-r from-purple-400 via-indigo-500 to-purple-600 bg-clip-text text-transparent'>
                             Join PremiumDrive
                         </h1>
-                        <p className='mt-1 sm:mt-2 text-xs sm:text-sm md:text-base font-light tracking-wider text-orange-300/60'>
+                        <p className='mt-1 sm:mt-2 text-xs sm:text-sm md:text-base font-light tracking-wider text-purple-300/60'>
                             Create your exclusive account
                         </p>
                     </div>
@@ -172,14 +171,14 @@ const SignUp = () => {
                     <form onSubmit={handleSubmit} className='space-y-3 sm:space-y-4 md:space-y-5'>
                         <div className='relative z-10'>
                             <div className='relative'>
-                                <div className='absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-orange-300/80'>
+                                <div className='absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-purple-300/80'>
                                     <FaUser className='text-sm sm:text-base' />
                                 </div>
                                 <input type="text" name="name"
                                     value={formData.name}
                                     placeholder='Full Name'
                                     onChange={handleChange}
-                                    className='w-full pl-10 pr-3 py-2 sm:py-3 md:py-4 rounded-xl text-xs sm:text-sm placeholder-opacity-70 border focus:outline-none focus:ring-2 focus:border-transparent transition-all duration-300 bg-white/5 backdrop-blur-sm text-white/90 placeholder-orange-200/40 border-white/10 focus:ring-orange-500/70'
+                                    className='w-full pl-10 pr-3 py-2 sm:py-3 md:py-4 rounded-xl text-xs sm:text-sm placeholder-opacity-70 border focus:outline-none focus:ring-2 focus:border-transparent transition-all duration-300 bg-white/5 backdrop-blur-sm text-white/90 placeholder-purple-200/40 border-white/10 focus:ring-purple-500/70'
                                     style={{ borderRadius: "160px" }}
                                     required
                                 />
@@ -188,14 +187,14 @@ const SignUp = () => {
 
                         <div className='relative z-10'>
                             <div className='relative'>
-                                <div className='absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-orange-300/80'>
+                                <div className='absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-purple-300/80'>
                                     <FaEnvelope className='text-sm sm:text-base' />
                                 </div>
                                 <input type="email" name="email"
                                     value={formData.email}
                                     placeholder='Email Address'
                                     onChange={handleChange}
-                                    className='w-full pl-10 pr-3 py-2 sm:py-3 md:py-4 rounded-xl text-xs sm:text-sm placeholder-opacity-70 border focus:outline-none focus:ring-2 focus:border-transparent transition-all duration-300 bg-white/5 backdrop-blur-sm text-white/90 placeholder-orange-200/40 border-white/10 focus:ring-orange-500/70'
+                                    className='w-full pl-10 pr-3 py-2 sm:py-3 md:py-4 rounded-xl text-xs sm:text-sm placeholder-opacity-70 border focus:outline-none focus:ring-2 focus:border-transparent transition-all duration-300 bg-white/5 backdrop-blur-sm text-white/90 placeholder-purple-200/40 border-white/10 focus:ring-purple-500/70'
                                     style={{ borderRadius: "160px" }}
                                     required
                                 />
@@ -204,7 +203,7 @@ const SignUp = () => {
 
                         <div className='relative z-10'>
                             <div className='relative'>
-                                <div className='absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-orange-300/80'>
+                                <div className='absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-purple-300/80'>
                                     <FaLock className='text-sm sm:text-base' />
                                 </div>
                                 <input type={showPasword ? 'text' : 'password'}
@@ -212,12 +211,12 @@ const SignUp = () => {
                                     value={formData.password}
                                     placeholder='Create Password'
                                     onChange={handleChange}
-                                    className='w-full pl-10 pr-3 py-2 sm:py-3 md:py-4 rounded-xl text-xs sm:text-sm placeholder-opacity-70 border focus:outline-none focus:ring-2 focus:border-transparent transition-all duration-300 bg-white/5 backdrop-blur-sm text-white/90 placeholder-orange-200/40 border-white/10 focus:ring-orange-500/70'
+                                    className='w-full pl-10 pr-3 py-2 sm:py-3 md:py-4 rounded-xl text-xs sm:text-sm placeholder-opacity-70 border focus:outline-none focus:ring-2 focus:border-transparent transition-all duration-300 bg-white/5 backdrop-blur-sm text-white/90 placeholder-purple-200/40 border-white/10 focus:ring-purple-500/70'
                                     style={{ borderRadius: "160px" }}
                                     required
                                 />
                                 <div onClick={togglePasswordVisibilty}
-                                    className='absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer transition-colors text-orange-300/80 hover:text-orange-200/90'>
+                                    className='absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer transition-colors text-purple-300/80 hover:text-purple-200/90'>
                                     {showPasword ? <FaEyeSlash className='text-sm sm:text-base' /> : <FaEye className='text-sm sm:text-base' />}
                                 </div>
                             </div>
@@ -230,16 +229,16 @@ const SignUp = () => {
                                     name='terms'
                                     checked={acceptedTerms}
                                     onChange={() => setAcceptedTerms(!acceptedTerms)}
-                                    className='h-4 w-4 sm:h-5 sm:w-5 rounded focus:ring-0 border text-orange-600 border-gray-500 bg-gray-700/30 checked:bg-orange-500/80'
+                                    className='h-4 w-4 sm:h-5 sm:w-5 rounded focus:ring-0 border text-purple-600 border-gray-500 bg-gray-700/30 checked:bg-purple-500/80'
                                     style={{ boxShadow: "none" }}
                                 />
                             </div>
 
                             <div className='ml-2 sm:ml-3 text-xs sm:text-sm'>
                                 <label htmlFor="terms"
-                                    className='ml-2 sm:ml-3 text-xs sm:text-sm text-orange-200/80 cursor-pointer select-none'>
+                                    className='ml-2 sm:ml-3 text-xs sm:text-sm text-purple-200/80 cursor-pointer select-none'>
                                     I agree to the {" "}
-                                    <span className='font-medium text-orange-300 hover:underline'>
+                                    <span className='font-medium text-purple-300 hover:underline'>
                                         Terms & Conditions
                                     </span>
                                 </label>
@@ -249,7 +248,7 @@ const SignUp = () => {
                         <button
                             type='submit'
                             disabled={loading}
-                            className='w-full py-2 sm:py-3 md:py-4 rounded-full font-bold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-0.5 cursor-pointer focus:outline-none focus:ring-2 relative overflow-hidden group bg-gradient-to-r from-orange-500/90 to-orange-600/90 text-white/95 hover:from-orange-600/90 hover:to-orange-700/90 focus:ring-orange-500/70'
+                            className='w-full py-2 sm:py-3 md:py-4 rounded-full font-bold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-0.5 cursor-pointer focus:outline-none focus:ring-2 relative overflow-hidden group bg-gradient-to-r from-purple-600 to-indigo-600 text-white/95 hover:from-purple-500 hover:to-indigo-500 focus:ring-purple-500/70 shadow-purple-500/20'
                             style={{
                                 borderRadius: "16px",
                                 boxShadow: "0 5px 15px rgba(8, 90, 20, 0.6)"
@@ -259,7 +258,7 @@ const SignUp = () => {
                                 <FaCheck className='text-white text-sm sm:text-base md:text-lg' />
                                 {loading ? 'CREACTING...' : 'CREATE ACCOUNT'}
                             </span>
-                            <div className='absolute inset-0 py-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-0 bg-gradient-to-r from-orange-400/50 to-orange-500/50' />
+                            <div className='absolute inset-0 py-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-0 bg-gradient-to-r from-purple-400/50 to-indigo-500/50' />
                         </button>
                     </form>
 
@@ -267,10 +266,10 @@ const SignUp = () => {
                         style={{ borderColor: 'rgba(255, 255, 255, 0.06)' }}
                         className='mt-2 pt-2 sm:pt-3 border-t text-center'
                     >
-                        <p className='mb-2 sm:mb-3 md:mb-4 text-xs sm:text-sm md:text-base text-orange-200/70'>
+                        <p className='mb-2 sm:mb-3 md:mb-4 text-xs sm:text-sm md:text-base text-purple-200/70'>
                             Already have an account?
                         </p>
-                        <a href="/login" className='inline-block w-full px-3 py-2 sm:px-4 sm:py-2 md:px-6 md:py-3 rounded-xl font-medium transition-all duration-300 transform hover:-translate-y-0.5 text-xs sm:text-sm md:text-base bg-transparent border border-orange-500/50 text-orange-300/90 hover:bg-orange-500/10 hover:text-white/90'
+                        <a href="/login" className='inline-block w-full px-3 py-2 sm:px-4 sm:py-2 md:px-6 md:py-3 rounded-xl font-medium transition-all duration-300 transform hover:-translate-y-0.5 text-xs sm:text-sm md:text-base bg-transparent border border-purple-500/50 text-purple-300/90 hover:bg-purple-500/10 hover:text-white/90'
                             style={{
                                 borderRadius: "16px",
                                 boxShadow: "0 2px 10px rgba(245, 124, 0, 0.08)"
@@ -294,10 +293,10 @@ const SignUp = () => {
                 pauseOnHover
                 theme="dark"
                 toastStyle={{
-                    backgroundColor: "#fb923c",
+                    backgroundColor: "#8b5cf6",
                     color: "#ffffff",
                     borderRadius: "16px",
-                    boxShadow: "0 4px 20px rgba(245,124,0,0.18)",
+                    boxShadow: "0 4px 20px rgba(139,92,246,0.25)",
                     fontFamily: "'Montserrat', sans-serif",
                 }}
             />

@@ -7,7 +7,7 @@ import {
 } from "react-icons/fa";
 import { myBookingsStyles as s } from "../assets/dummyStyles";
 
-const API_BASE = "https://luxeride-rantals.onrender.com";
+const API_BASE = "http://localhost:5000"; // Change this to your backend URL
 const TIMEOUT = 15000;
 
 // ---------- Helpers ----------
@@ -194,26 +194,26 @@ const StatusBadge = ({ status }) => {
 const BookingCard = ({ booking, onViewDetails }) => {
   const days = daysBetween(booking.dates.pickup, booking.dates.return);
   return (
-    <div className={s.bookingCard}>
-      <div className={s.cardImageContainer}>
+    <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl overflow-hidden border border-gray-700 shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-transform">
+      <div className="relative h-48 overflow-hidden">
         <img
           src={booking.car.image}
           alt={booking.car.make}
-          className={s.cardImage}
+          className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
         />
       </div>
 
-      <div className={s.cardContent}>
-        <div className={s.cardHeader}>
+      <div className="p-5">
+        <div className="flex justify-between items-start mb-3">
           <div>
-            <h3 className={s.carTitle}>{booking.car.make}</h3>
-            <p className={s.carSubtitle}>
+            <h3 className="text-xl font-bold">{booking.car.make}</h3>
+            <p className="text-gray-400">
               {booking.car.category} â€¢ {booking.car.year}
             </p>
           </div>
           <div className="text-right">
-            <p className={s.priceText}>{formatPrice(booking.price)}</p>
-            <p className={s.daysText}>
+            <p className="text-purple-400 font-bold text-xl">{formatPrice(booking.price)}</p>
+            <p className="text-gray-500 text-sm">
               for {days} {days > 1 ? "days" : "day"}
             </p>
           </div>
@@ -221,40 +221,40 @@ const BookingCard = ({ booking, onViewDetails }) => {
 
         <StatusBadge status={booking.status} />
 
-        <div className={s.detailSection}>
-          <div className={s.detailItem}>
-            <div className={s.detailIcon}>
+        <div className="space-y-4 mt-2 pt-4 border-t border-gray-700">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-lg bg-gray-800 flex items-center justify-center text-purple-400">
               <FaCalendarAlt />
             </div>
             <div>
-              <p className={s.detailLabel}>Dates</p>
-              <p className={s.detailValue}>
+              <p className="text-gray-400 text-sm">Dates</p>
+              <p className="font-medium">
                 {formatDate(booking.dates.pickup)} -{" "}
                 {formatDate(booking.dates.return)}
               </p>
             </div>
           </div>
 
-          <div className={s.detailItem}>
-            <div className={s.detailIcon}>
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-lg bg-gray-800 flex items-center justify-center text-purple-400">
               <FaMapMarkerAlt />
             </div>
             <div>
-              <p className={s.detailLabel}>Pickup Location</p>
-              <p className={s.detailValue}>{booking.location}</p>
+              <p className="text-gray-400 text-sm">Pickup Location</p>
+              <p className="font-medium">{booking.location}</p>
             </div>
           </div>
         </div>
 
-        <div className={s.cardActions}>
+        <div className="mt-6 pt-4 border-t border-gray-700 flex gap-3">
           <button
             type="button"
             onClick={() => onViewDetails(booking)}
-            className={s.viewDetailsButton}
+            className="flex-1 py-2 px-4 bg-gray-800 hover:bg-gray-700 rounded-lg flex items-center justify-center gap-2"
           >
             <FaReceipt /> View Details
           </button>
-          <Link to="/cars" className={s.bookAgainButton}>
+          <Link to="/cars" className="flex-1 py-2 px-4 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 rounded-lg flex items-center justify-center gap-2">
             <FaCar />
             {booking.status === "upcoming" ? "Modify" : "Book Again"}
           </Link>
@@ -269,19 +269,19 @@ const BookingModal = ({ booking, onClose, onCancel }) => {
   const pricePerDay = days > 0 ? booking.price / days : booking.price;
 
   return (
-    <div className={s.modalOverlay}>
-      <div className={s.modalContainer}>
-        <div className={s.modalContent}>
-          <div className={s.modalHeader}>
-            <h2 className={s.modalTitle}>
-              <FaReceipt className="text-orange-400" /> Booking Details
+    <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+      <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl border border-gray-700 max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+        <div className="p-6">
+          <div className="flex justify-between items-center mb-6">
+            <h2 className="text-2xl font-bold flex items-center gap-2">
+              <FaReceipt className="text-purple-400" /> Booking Details
             </h2>
             <div className="flex items-center gap-2">
               {booking.status === "upcoming" && (
                 <button
                   type="button"
                   onClick={() => onCancel(booking.id)}
-                  className={s.cancelButton}
+                  className="px-3 py-2 bg-red-600 hover:bg-red-700 rounded-md text-white mr-2"
                 >
                   Cancel Booking
                 </button>
@@ -289,121 +289,121 @@ const BookingModal = ({ booking, onClose, onCancel }) => {
               <button
                 type="button"
                 onClick={onClose}
-                className={s.modalCloseButton}
+                className="p-2 rounded-full hover:bg-gray-700 transition-colors"
               >
                 <FaTimes />
               </button>
             </div>
           </div>
 
-          <div className={s.modalGrid}>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
             <div>
               <img
                 src={booking.car.image}
                 alt={booking.car.make}
-                className={s.carImageModal}
+                className="w-full h-48 object-cover rounded-xl"
               />
             </div>
 
             <div>
-              <h3 className={s.carTitle}>{booking.car.make}</h3>
-              <div className={s.carTags}>
-                <span className={s.carTag}>{booking.car.category}</span>
-                <span className={s.carTag}>{booking.car.year}</span>
-                <span className={s.carTag}>{booking.car.seats} seats</span>
-                <span className={s.carTag}>{booking.car.transmission}</span>
+              <h3 className="text-xl font-bold">{booking.car.make}</h3>
+              <div className="flex flex-wrap gap-2 mt-2">
+                <span className="px-2 py-1 bg-gray-700 rounded text-sm">{booking.car.category}</span>
+                <span className="px-2 py-1 bg-gray-700 rounded text-sm">{booking.car.year}</span>
+                <span className="px-2 py-1 bg-gray-700 rounded text-sm">{booking.car.seats} seats</span>
+                <span className="px-2 py-1 bg-gray-700 rounded text-sm">{booking.car.transmission}</span>
               </div>
 
-              <div className={s.infoGrid}>
+              <div className="mt-4 grid grid-cols-2 gap-3">
                 <div>
-                  <p className={s.infoLabel}>Fuel Type</p>
-                  <p className={s.infoValue}>{booking.car.fuelType}</p>
+                  <p className="text-gray-400 text-sm">Fuel Type</p>
+                  <p className="font-medium">{booking.car.fuelType}</p>
                 </div>
                 <div>
-                  <p className={s.infoLabel}>Mileage</p>
-                  <p className={s.infoValue}>{booking.car.mileage}</p>
+                  <p className="text-gray-400 text-sm">Mileage</p>
+                  <p className="font-medium">{booking.car.mileage}</p>
                 </div>
                 <div>
-                  <p className={s.infoLabel}>Price per day</p>
-                  <p className={s.infoValue}>{formatPrice(pricePerDay)}</p>
+                  <p className="text-gray-400 text-sm">Price per day</p>
+                  <p className="font-medium">{formatPrice(pricePerDay)}</p>
                 </div>
                 <div>
-                  <p className={s.infoLabel}>Total Price</p>
-                  <p className={s.priceValue}>{formatPrice(booking.price)}</p>
+                  <p className="text-gray-400 text-sm">Total Price</p>
+                  <p className="font-medium">{formatPrice(booking.price)}</p>
                 </div>
               </div>
             </div>
           </div>
 
-          <div className={s.modalGrid}>
+          <div className="mt-4 grid grid-cols-2 gap-3">
             <div className="space-y-4">
               <h3 className="text-lg font-semibold flex items-center gap-2">
-                <FaCalendarAlt className="text-orange-400" /> Booking Dates
+                <FaCalendarAlt className="text-purple-400" /> Booking Dates
               </h3>
-              <div className={s.infoCard}>
-                <div className={s.infoRow}>
-                  <p className={s.infoLabel}>Pickup Date:</p>
-                  <p className={s.infoValue}>
+              <div className="bg-gray-800/50 p-4 rounded-xl">
+                <div className="flex justify-between mb-2">
+                  <p className="text-gray-400 text-sm">Pickup Date:</p>
+                  <p className="font-medium">
                     {formatDate(booking.dates.pickup)}
                   </p>
                 </div>
-                <div className={s.infoRow}>
-                  <p className={s.infoLabel}>Return Date:</p>
-                  <p className={s.infoValue}>
+                <div className="flex justify-between mb-2">
+                  <p className="text-gray-400 text-sm">Return Date:</p>
+                  <p className="font-medium">
                     {formatDate(booking.dates.return)}
                   </p>
                 </div>
-                <div className={`${s.infoRow} ${s.infoDivider}`}>
-                  <p className={s.infoLabel}>Duration:</p>
-                  <p className={s.infoValue}>{days} days</p>
+                <div className={`flex justify-between mb-2 mt-3 pt-3 border-t border-gray-700`}>
+                  <p className="text-gray-400 text-sm">Duration:</p>
+                  <p className="font-medium">{days} days</p>
                 </div>
               </div>
 
               <h3 className="text-lg font-semibold flex items-center gap-2 mt-6">
-                <FaMapMarkerAlt className="text-orange-400" /> Location Details
+                <FaMapMarkerAlt className="text-purple-400" /> Location Details
               </h3>
-              <div className={s.infoCard}>
-                <p className={s.infoLabel}>Pickup Location:</p>
-                <p className={s.infoValue}>{booking.location}</p>
+              <div className="bg-gray-800/50 p-4 rounded-xl">
+                <p className="text-gray-400 text-sm">Pickup Location:</p>
+                <p className="font-medium">{booking.location}</p>
               </div>
             </div>
 
             <div className="space-y-4">
               <h3 className="text-lg font-semibold flex items-center gap-2 mt-6">
-                <FaUser className="text-orange-400" /> User Information
+                <FaUser className="text-purple-400" /> User Information
               </h3>
-              <div className={s.infoCard}>
+              <div className="bg-gray-800/50 p-4 rounded-xl">
                 <div className="mb-3">
-                  <p className={s.infoLabel}>Full Name:</p>
-                  <p className={s.infoValue}>{booking.user.name}</p>
+                  <p className="text-gray-400 text-sm">Full Name:</p>
+                  <p className="font-medium">{booking.user.name}</p>
                 </div>
                 <div className="mb-3">
-                  <p className={s.infoLabel}>Email:</p>
-                  <p className={s.infoValue}>{booking.user.email}</p>
+                  <p className="text-gray-400 text-sm">Email:</p>
+                  <p className="font-medium">{booking.user.email}</p>
                 </div>
                 <div className="mb-3">
-                  <p className={s.infoLabel}>Phone:</p>
-                  <p className={s.infoValue}>{booking.user.phone}</p>
+                  <p className="text-gray-400 text-sm">Phone:</p>
+                  <p className="font-medium">{booking.user.phone}</p>
                 </div>
                 <div>
-                  <p className={s.infoLabel}>Address:</p>
-                  <p className={s.infoValue}>{booking.user.address}</p>
+                  <p className="text-gray-400 text-sm">Address:</p>
+                  <p className="font-medium">{booking.user.address}</p>
                 </div>
               </div>
 
               <h3 className="text-lg font-semibold flex items-center gap-2 mt-6">
-                <FaCreditCard className="text-orange-400" /> Payment Details
+                <FaCreditCard className="text-purple-400" /> Payment Details
               </h3>
-              <div className={s.infoCard}>
+              <div className="bg-gray-800/50 p-4 rounded-xl">
                 <div className="mb-3">
-                  <p className={s.infoLabel}>Payment Method:</p>
-                  <p className={s.infoValue}>
+                  <p className="text-gray-400 text-sm">Payment Method:</p>
+                  <p className="font-medium">
                     {booking.paymentMethod || "â€”"}
                   </p>
                 </div>
                 <div>
-                  <p className={s.infoLabel}>Transaction ID:</p>
-                  <p className={s.infoValue}>
+                  <p className="text-gray-400 text-sm">Transaction ID:</p>
+                  <p className="font-medium">
                     {booking.paymentId || booking.raw?.sessionId || "â€”"}
                   </p>
                 </div>
@@ -411,24 +411,24 @@ const BookingModal = ({ booking, onClose, onCancel }) => {
             </div>
           </div>
 
-          <div className={s.infoCard}>
+          <div className="bg-gray-800/50 p-4 rounded-xl mt-4">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <p className={s.infoLabel}>Booking Status:</p>
+                <p className="text-gray-400 text-sm">Booking Status:</p>
                 <StatusBadge status={booking.status} />
               </div>
               <div>
-                <p className={s.infoLabel}>Booking Date:</p>
-                <p className={s.infoValue}>{formatDate(booking.bookingDate)}</p>
+                <p className="text-gray-400 text-sm">Booking Date:</p>
+                <p className="font-medium">{formatDate(booking.bookingDate)}</p>
               </div>
             </div>
           </div>
 
-          <div className={s.modalActions}>
-            <button type="button" onClick={onClose} className={s.closeButton}>
+          <div className="flex gap-4 mt-4">
+            <button type="button" onClick={onClose} className="flex-1 py-3 px-4 bg-gray-700 hover:bg-gray-600 rounded-lg">
               Close
             </button>
-            <Link to="/cars" onClick={onClose} className={s.modalBookButton}>
+            <Link to="/cars" onClick={onClose} className="flex-1 py-3 px-4 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 rounded-lg flex items-center justify-center gap-2">
               Book Again <FaArrowRight className="text-sm" />
             </Link>
           </div>
@@ -440,9 +440,9 @@ const BookingModal = ({ booking, onClose, onCancel }) => {
 
 // ---------- Main page ----------
 const StatsCard = ({ value, label, color }) => (
-  <div className={s.statsCard}>
+  <div className="bg-gray-800/50 p-6 rounded-2xl border border-gray-700">
     <div className={s.statsValue(color)}>{value}</div>
-    <p className={s.statsLabel}>{label}</p>
+    <p className="text-gray-400">{label}</p>
   </div>
 );
 
@@ -486,12 +486,6 @@ const MyBookings = () => {
         response.data?.rows ||
         response.data ||
         [];
-
-      // const rawData = Array.isArray(response.data)
-      //   ? response.data
-      //   : Array.isArray(response.data?.data)
-      //     ? response.data.data
-      //     : [];
 
       const normalized = (Array.isArray(rawData) ? rawData : []).map(
         normalizeBooking
@@ -580,11 +574,11 @@ const MyBookings = () => {
   };
 
   return (
-    <div className={s.pageContainer}>
+    <div className="min-h-screen bg-gradient-to-b pt-40 from-gray-900 to-black text-white py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-12">
-          <h1 className={s.title}>My Bookings</h1>
-          <p className={s.subtitle}>
+          <h1 className="text-3xl sm:text-4xl pb-3 md:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-indigo-500 to-purple-600">My Bookings</h1>
+          <p className="text-gray-400 max-w-2xl mx-auto">
             View and manage all your current and past car rental bookings
           </p>
         </div>
@@ -604,17 +598,17 @@ const MyBookings = () => {
 
         {loading && (
           <div className="flex justify-center items-center py-20">
-            <div className={s.loadingSpinner} />
+            <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-purple-500" />
           </div>
         )}
 
         {!loading && error && (
-          <div className={s.errorContainer}>
-            <p className={s.errorText}>{error}</p>
+          <div className="text-center py-8 bg-gray-800/50 rounded-2xl border border-gray-700">
+            <p className="text-red-400">{error}</p>
             <button
               type="button"
               onClick={fetchBookings}
-              className={s.retryButton}
+              className="mt-4 px-4 py-2 bg-purple-600 hover:bg-purple-500 rounded-lg text-white"
             >
               Retry
             </button>
@@ -622,17 +616,17 @@ const MyBookings = () => {
         )}
 
         {!loading && !error && filteredBookings.length === 0 && (
-          <div className={s.emptyState}>
-            <div className={s.emptyIconContainer}>
-              <FaCar className={s.emptyIcon} />
+          <div className="text-center py-16 bg-gray-800/50 rounded-2xl border border-gray-700">
+            <div className="mx-auto w-24 h-24 rounded-full bg-gray-800 flex items-center justify-center mb-6">
+              <FaCar className="text-4xl text-purple-500" />
             </div>
-            <h3 className={s.emptyTitle}>No bookings found</h3>
-            <p className={s.emptyText}>
+            <h3 className="text-2xl font-semibold mb-2">No bookings found</h3>
+            <p className="text-gray-400 max-w-md mx-auto">
               {filter === "all"
                 ? "You haven't made any bookings yet. Browse our collection to get started!"
                 : `You don't have any ${filter} bookings.`}
             </p>
-            <Link to="/cars" className={s.browseButton}>
+            <Link to="/cars" className="inline-block mt-6 px-6 py-3 bg-gradient-to-r from-purple-600 to-indigo-600 bg-purple-600 hover:bg-purple-500 text-white rounded-lg flex items-center justify-center gap-2">
               <FaCar /> Browse Cars
             </Link>
           </div>

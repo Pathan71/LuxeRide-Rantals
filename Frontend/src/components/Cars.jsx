@@ -9,7 +9,6 @@ import {
   FaShieldAlt,
 } from "react-icons/fa";
 import axios from "axios";
-import { carPageStyles } from "../assets/dummyStyles";
 
 const MS_PER_DAY = 24 * 60 * 60 * 1000;
 const startOfDay = (d) => {
@@ -29,7 +28,7 @@ const Cars = () => {
   const [error, setError] = useState("");
 
   const abortControllerRef = useRef(null);
-  const base = "https://luxeride-rantals.onrender.com";
+  const base = "http://localhost:5000";
   const limit = 12;
   const fallbackImage = `${base}/uploads/default-car.png`;
 
@@ -51,7 +50,7 @@ const Cars = () => {
     if (abortControllerRef.current) {
       try {
         abortControllerRef.current.abort();
-      } catch (e) {}
+      } catch (e) { }
     }
     const controller = new AbortController();
     abortControllerRef.current = controller;
@@ -319,29 +318,31 @@ const Cars = () => {
 
   // IT IS PART OF UI
   return (
-    <div className={carPageStyles.pageContainer}>
+    <div className="relative min-h-screen py-8 pt-12 sm:py-12 md:py-16 px-4 sm:px-6 lg:px-8 overflow-hidden bg-gradient-to-b from-gray-950 to-black">
       {/* Main Content */}
-      <div className={carPageStyles.contentContainer}>
-        <div className={carPageStyles.headerContainer}>
-          <div className={carPageStyles.headerDecoration}></div>
-          <h1 className={carPageStyles.title}>Premium Car Collection</h1>
-          <p className={carPageStyles.subtitle}>
+      <div className="relative z-10 max-w-7xl mx-auto">
+        <div className="text-center mb-10 sm:mb-12 pt-13 md:mb-16">
+          <div className="absolute -bottom-3 -right-3 w-6 h-6 rounded-full bg-gradient-to-r from-purple-500 to-indigo-600"></div>
+          <h1 className="relative text-3xl sm:text-4xl md:text-5xl font-bold mb-2 z-10 font-['Pacifico'] bg-gradient-to-r from-purple-400 via-indigo-500  to-purple-600 bg-clip-text text-transparent">
+            Premium Car Collection
+          </h1>
+          <p className="text-slate-400 max-w-2xl mx-auto text-sm sm:text-base">
             Discover our exclusive fleet of luxury vehicles. Each car is
             meticulously maintained and ready for your journey.
           </p>
         </div>
 
         {/* Grid */}
-        <div className={carPageStyles.gridContainer}>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-8 md:gap-10">
           {loading &&
             // show skeleton placeholders when loading
             Array.from({ length: limit }).map((_, i) => (
-              <div key={`skeleton-${i}`} className={carPageStyles.carCard}>
-                <div className={carPageStyles.glowEffect}></div>
-                <div className={carPageStyles.imageContainer}>
+              <div key={`skeleton-${i}`} className="group relative rounded-2xl overflow-hidden border border-slate-700 shadow-xl transition-all duration-300 hover:shadow-2xl hover:-translate-y-1">
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+                <div className="relative h-48 sm:h-52 md:h-56 overflow-hidden">
                   <div className="w-full h-full bg-gray-200 animate-pulse" />
                 </div>
-                <div className={carPageStyles.cardContent}>
+                <div className="p-4 sm:p-5 md:p-6">
                   <div className="h-6 bg-gray-200 rounded w-3/4 mb-2 animate-pulse" />
                   <div className="h-4 bg-gray-200 rounded w-1/3 mb-4 animate-pulse" />
                   <div className="grid grid-cols-2 gap-2">
@@ -374,16 +375,16 @@ const Cars = () => {
               const disabled = isBookDisabled(car);
 
               return (
-                <div key={id} className={carPageStyles.carCard}>
-                  <div className={carPageStyles.glowEffect}></div>
+                <div key={id} className="group relative rounded-2xl overflow-hidden border border-slate-700 shadow-xl transition-all duration-300 hover:shadow-2xl hover:-translate-y-1">
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
 
-                  <div className={carPageStyles.imageContainer}>
+                  <div className="relative h-48 sm:h-52 md:h-56 overflow-hidden">
                     <div className="absolute inset-0 z-10" />
                     <img
                       src={imageSrc}
                       alt={carName}
                       onError={handleImageError}
-                      className={carPageStyles.carImage}
+                      className="w-full h-full object-cover transition-transform duration-500"
                     />
 
                     {/* availability badge at top-right of card */}
@@ -391,17 +392,17 @@ const Cars = () => {
                       {renderAvailabilityBadge(car.availability, car)}
                     </div>
 
-                    <div className={carPageStyles.priceBadge}>
+                    <div className="absolute bottom-3 left-3 bg-gradient-to-r from-purple-500 to-indigo-600 text-white px-3 py-1.5 rounded-full text-xs sm:text-sm font-medium shadow-lg">
                       ₹{car.dailyRate ?? car.price ?? car.pricePerDay ?? "—"}
                       /day
                     </div>
                   </div>
 
-                  <div className={carPageStyles.cardContent}>
-                    <div className={carPageStyles.headerRow}>
+                  <div className="p-4 sm:p-5 md:p-6">
+                    <div className="flex justify-between items-center mb-4">
                       <div>
-                        <h3 className={carPageStyles.carName}>{carName}</h3>
-                        <p className={carPageStyles.carType}>
+                        <h3 className="text-lg sm:text-xl font-bold text-white">{carName}</h3>
+                        <p className="text-sm text-purple-400">
                           {car.category ?? car.type ?? "Sedan"}
                         </p>
                       </div>
@@ -409,30 +410,30 @@ const Cars = () => {
                     {/* IMAGE HERE */}
 
                     {/* CARS DETAILS */}
-                    <div className={carPageStyles.specsGrid}>
-                      <div className={carPageStyles.specItem}>
-                        <div className={carPageStyles.specIconContainer}>
+                    <div className="grid grid-cols-2 gap-3 mb-5 text-sm text-slate-300">
+                      <div className="flex items-center space-x-2">
+                        <div className="bg-slate-700 p-1.5 rounded-lg">
                           <FaUserFriends className="text-sky-400" />
                         </div>
                         <span>{car.seats ?? "4"} Seats</span>
                       </div>
 
-                      <div className={carPageStyles.specItem}>
-                        <div className={carPageStyles.specIconContainer}>
+                      <div className="flex items-center space-x-2">
+                        <div className="bg-slate-700 p-1.5 rounded-lg">
                           <FaGasPump className="text-amber-400" />
                         </div>
                         <span>{car.fuelType ?? car.fuel ?? "Gasoline"}</span>
                       </div>
 
-                      <div className={carPageStyles.specItem}>
-                        <div className={carPageStyles.specIconContainer}>
+                      <div className="flex items-center space-x-2">
+                        <div className="bg-slate-700 p-1.5 rounded-lg">
                           <FaTachometerAlt className="text-emerald-400" />
                         </div>
                         <span>{car.mileage ? `${car.mileage} kmpl` : "—"}</span>
                       </div>
 
-                      <div className={carPageStyles.specItem}>
-                        <div className={carPageStyles.specIconContainer}>
+                      <div className="flex items-center space-x-2">
+                        <div className="bg-slate-700 p-1.5 rounded-lg">
                           <FaShieldAlt className="text-purple-400" />
                         </div>
                         <span>Premium</span>
@@ -441,9 +442,8 @@ const Cars = () => {
 
                     <button
                       onClick={() => handleBook(car, id)}
-                      className={`${carPageStyles.bookButton} ${
-                        disabled ? "opacity-60 cursor-not-allowed" : ""
-                      }`}
+                      className={`bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 shadow-purple-500/20 inline-flex items-center gap-3 px-5 py-3 rounded-lg font-medium transform-gpu hover:scale-[1.03] active:scale-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-purple-300 cursor-pointer ${disabled ? "opacity-60 cursor-not-allowed" : ""
+                        }`}
                       aria-label={`Book ${carName}`}
                       title={
                         disabled
@@ -452,10 +452,10 @@ const Cars = () => {
                       }
                       disabled={disabled}
                     >
-                      <span className={carPageStyles.buttonText}>
+                      <span className="group-hover:tracking-wider transition-all">
                         {disabled ? "Unavailable" : "Book Now"}
                       </span>
-                      <FaArrowRight className={carPageStyles.buttonIcon} />
+                      <FaArrowRight className="ml-3 h-4 w-4 transition-transform group-hover:translate-x-1" />
                     </button>
                   </div>
                 </div>
@@ -464,8 +464,8 @@ const Cars = () => {
         </div>
 
         {/* Floating decorative elements */}
-        <div className={carPageStyles.decor1}></div>
-        <div className={carPageStyles.decor2}></div>
+        <div className="absolute -top-16 -left-16 w-32 h-32 rounded-full bg-gradient-to-r from-sky-500/10 to-teal-500/10 blur-3xl z-0"></div>
+        <div className="absolute -bottom-20 -right-20 w-40 h-40 rounded-full bg-gradient-to-r from-amber-500/10 to-rose-500/10 blur-3xl z-0"></div>
       </div>
     </div>
   );

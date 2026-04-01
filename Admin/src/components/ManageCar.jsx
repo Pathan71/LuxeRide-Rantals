@@ -1,10 +1,9 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import axios from 'axios'
-import { styles } from '../assets/dummyStyles.js'
 import { FaCar, FaCog, FaEdit, FaFilter, FaGasPump, FaTachometerAlt, FaTrash, FaUser, FaTimes } from 'react-icons/fa'
 import { toast, ToastContainer } from 'react-toastify';
 
-const BASE = 'https://luxeride-rantals.onrender.com';
+const BASE = 'http://localhost:5000';
 const api = axios.create({
     baseURL: BASE,
     headers: { Accept: 'application/json' },
@@ -61,7 +60,7 @@ const buildSafeCar = (raw = {}, idx = 0) => {
 
 // SUB - COMPONENT
 const StatCard = ({ title, value, icon: Icon, className = '' }) => (
-    <div className={`bg-gradient-to-br from-orange-900/30 to-amber-900/30 rounded-2xl p-5 w-full max-w-xs border border-gray-800 hover:border-orange-500/50 transition-all ${className}`}>
+    <div className={`bg-gradient-to-br from-purple-900/30 to-indigo-900/30 rounded-2xl p-5 w-full max-w-xs border border-gray-800 hover:border-purple-500/50 transition-all ${className}`}>
         <div>
             <h3 className='text-gray-400 text-sm font-medium mb-2'>
                 {title}
@@ -69,7 +68,7 @@ const StatCard = ({ title, value, icon: Icon, className = '' }) => (
             <p className='text-2xl font-bold text-white'>{value}</p>
         </div>
         <div className='p-3 rounded-lg bg-gray-800/30'>
-            <Icon className='text-orange-400 text-xl' />
+            <Icon className='text-purple-400 text-xl' />
         </div>
     </div>
 )
@@ -85,7 +84,7 @@ const CarCard = ({ car, onEdit, onDelete }) => {
     };
 
     return (
-        <div className='bg-gradient-to-br from-gray-900/50 to-gray-900/30 rounded-2xl border border-gray-800} hover:border-orange-500/50 transition-all'>
+        <div className='bg-gradient-to-br from-gray-900/50 to-gray-900/30 rounded-2xl border border-gray-800} hover:border-purple-500/50 transition-all'>
             <div className='relative'>
                 <img src={car.image}
                     alt={`${car.make} ${car.model}`}
@@ -93,7 +92,7 @@ const CarCard = ({ car, onEdit, onDelete }) => {
                 />
             </div>
             <div className='absolute top-4 right-4'>
-                <span className={`${styles.statusBadge} ${getStatusStyle(car.status)}`}>
+                <span className={`px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full ${getStatusStyle(car.status)}`}>
                     {car.status.charAt(0).toUpperCase() + car.status.slice(1)}
                 </span>
             </div>
@@ -107,32 +106,32 @@ const CarCard = ({ car, onEdit, onDelete }) => {
                         <p className='text-gray-400'>{car.year}</p>
                     </div>
 
-                    <div className='text-2xl font-bold text-orange-500'>
-                        ${car.dailyRate}
+                    <div className='text-2xl font-bold text-purple-500'>
+                        ₹{car.dailyRate}
                         <span className='text-sm text-gray-400 font-normal'>/day</span>
                     </div>
                 </div>
 
                 <div className='grid grid-cols-2 gap-4 mb-5'>
                     <div className='flex items-center text-sm'>
-                        <FaGasPump className='text-orange-400 mr-2' />
+                        <FaGasPump className='text-purple-400 mr-2' />
                         <span className='text-gray-300'>{car.fuelType}</span>
                     </div>
 
                     <div className='flex items-center text-sm'>
-                        <FaTachometerAlt className='text-orange-400 mr-2' />
+                        <FaTachometerAlt className='text-purple-400 mr-2' />
                         <span className='text-gray-300'>
                             {(car.mileage || 0).toLocaleString()} mi
                         </span>
                     </div>
 
                     <div className='flex items-center text-sm'>
-                        <FaUser className='text-orange-400 mr-2' />
+                        <FaUser className='text-purple-400 mr-2' />
                         <span className='text-gray-300'>{car.seats}</span>
                     </div>
 
                     <div className='flex items-center text-sm'>
-                        <FaCog className='text-orange-400 mr-2' />
+                        <FaCog className='text-purple-400 mr-2' />
                         <span className='text-gray-300'>{car.transmission}</span>
                     </div>
                 </div>
@@ -140,7 +139,7 @@ const CarCard = ({ car, onEdit, onDelete }) => {
                 <div className='flex justify-between border-t border-gray-800 pt-4'>
                     <button
                         onClick={() => onEdit(car)}
-                        className='flex items-center text-orange-400 hover:text-orange-300 transition-color cursor-pointer'>
+                        className='flex items-center text-purple-400 hover:text-purple-300 transition-color cursor-pointer'>
                         <FaEdit className='mr-1' /> Edit
                     </button>
 
@@ -222,10 +221,10 @@ const EditModal = ({ car, onClose, onSubmit, onChange }) => {
     return (
         <div className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 z-50">
             <div
-                className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto border border-orange-800/50"
+                className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto border border-purple-800/50"
             >
                 <div className="p-6">
-                    <div className="flex justify-between items-center border-b border-orange-800/30 pb-4">
+                    <div className="flex justify-between items-center border-b border-purple-800/30 pb-4">
                         <h2 className="text-2xl font-bold text-white">
                             {car._id ? `Edit: ${car.make} ${car.model}` : "Add New Car"}
                         </h2>
@@ -291,7 +290,7 @@ const EditModal = ({ car, onClose, onSubmit, onChange }) => {
                                 <img
                                     src={makeImageUrl(car.image)}
                                     alt="preview"
-                                    className="h-40 object-contain rounded-md border border-orange-800/30"
+                                    className="h-40 object-contain rounded-md border border-purple-800/30"
                                 />
                             </div>
                         )}
@@ -305,7 +304,7 @@ const EditModal = ({ car, onClose, onSubmit, onChange }) => {
                                 Cancel
                             </button>
                             <button type="submit"
-                                className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-orange-600 to-amber-600 text-white cursor-pointer">
+                                className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white cursor-pointer">
                                 {car._id ? "Save Changes" : "Add Car"}
                             </button>
                         </div>
@@ -318,15 +317,15 @@ const EditModal = ({ car, onClose, onSubmit, onChange }) => {
 
 const NoCarsView = ({ onResetFilter }) => (
     <div className='bg-gradient-to-br from-gray-900/50 to-gray-900/30 text-center py-16 rounded-2xl border border-gray-800 mt-8'>
-        <div className='mx-auto w-24 h-24 rounded-full bg-gradient-to-br from-orange-900/30 to-amber-900/30 flex items-center justify-center mb-6'>
-            <div className='bg-gradient-to-br from-orange-700 to-amber-700 w-16 h-16 flex rounded-full justify-center items-center'>
-                <FaCar className='h-8 w-8 text-orange-300' />
+        <div className='mx-auto w-24 h-24 rounded-full bg-gradient-to-br from-purple-900/30 to-indigo-900/30 flex items-center justify-center mb-6'>
+            <div className='bg-gradient-to-br from-purple-700 to-indigo-700 w-16 h-16 flex rounded-full justify-center items-center'>
+                <FaCar className='h-8 w-8 text-purple-300' />
             </div>
         </div>
         <h3 className='mt-4 text-xl font-medium text-white'>No cars found</h3>
         <p className='mt-2 text-gray-400'>Try adjusting your filter criteria</p>
 
-        <button onClick={onResetFilter} className='px-5 py-2.5 rounded-xl bg-gradient-to-r from-orange-600 to-amber-600 text-white mt-4'>
+        <button onClick={onResetFilter} className='px-5 py-2.5 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white mt-4'>
             Show All Cars
         </button>
     </div>
@@ -335,7 +334,7 @@ const NoCarsView = ({ onResetFilter }) => (
 // FILTER
 const FilterSelect = ({ value, onChange, categories }) => (
     <div
-        className='bg-gradient-to-br from-gray-900/50 to-gray-900/30 rounded-2xl p-5 w-full max-w-xs  border-gray-800 hover:border-orange-500/50 transition-all'
+        className='bg-gradient-to-br from-gray-900/50 to-gray-900/30 rounded-2xl p-5 w-full max-w-xs  border-gray-800 hover:border-purple-500/50 transition-all'
     >
         <label className={`block text-sm font-medium text-gray-400 mb-2`}>
             Filter by Category
@@ -344,7 +343,7 @@ const FilterSelect = ({ value, onChange, categories }) => (
             <select
                 value={value}
                 onChange={(e) => onChange(e.target.value)}
-                className='bg-gray-800/50 border border-gray-700 w-full px-4 py-2.5 text-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500'
+                className='bg-gray-800/50 border border-gray-700 w-full px-4 py-2.5 text-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500'
             >
                 {categories.map((c) => (
                     <option key={c} value={c}>
@@ -352,7 +351,7 @@ const FilterSelect = ({ value, onChange, categories }) => (
                     </option>
                 ))}
             </select>
-            <div className="absolute left-1 top-4 text-orange-500">
+            <div className="absolute left-1 top-4 text-purple-500">
                 <FaFilter />
             </div>
         </div>
@@ -452,10 +451,10 @@ const ManageCar = () => {
         <div className='min-h-screen bg-gray-950 p-4 sm:p-6'>
             <div className='relative mb-8 pt-16 text-center'>
                 <div className='absolute inset-x-0 top-0 flex justify-center'>
-                    <div className='h-1 w-20 bg-gradient-to-r from-orange-500 to-amber-500 rounded-full'></div>
+                    <div className='h-1 w-20 bg-gradient-to-r from-purple-500 to-indigo-500 rounded-full'></div>
                 </div>
                 <h1 className='text-4xl font-extrabold py-4 text-white sm:text-5xl mb-3 tracking-wide'>
-                    <span className='text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-amber-400'>
+                    <span className='text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-indigo-500 to-purple-600'>
                         Fleet Management
                     </span>
                 </h1>

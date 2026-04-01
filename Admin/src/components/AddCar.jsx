@@ -2,7 +2,7 @@ import React, { useCallback, useRef, useState } from 'react'
 import axios from 'axios'
 import { ToastContainer, toast } from 'react-toastify'
 
-const baseUrl = 'https://luxeride-rantals.onrender.com'
+const baseUrl = 'http://localhost:5000'
 const api = axios.create({ baseURL: baseUrl })
 
 const AddCar = () => {
@@ -119,7 +119,7 @@ const AddCar = () => {
                 "Congratulations!",
                 `Your ${carNameForToast} has been listed successfully`,
                 <svg
-                    className='w-8 h-8 mr-3 text-orange-400'
+                    className='w-8 h-8 mr-3 text-purple -400'
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -174,7 +174,7 @@ const AddCar = () => {
                     name={field.name}
                     value={data[field.name]}
                     onChange={handleChange}
-                    className={field.prefix ? 'glass-input w-full pl-8 pr-4 py-3 rounded-xl text-gray-200 shadow-sm focus:ring-2 focus:ring-orange-500 transition-all' : 'bg-gray-800/50 border border-gray-700 w-full px-4 py-3 rounded-xl text-gray-200 focus:ring-2 focus:ring-orange-500'}
+                    className={field.prefix ? 'glass-input w-full pl-8 pr-4 py-3 rounded-xl text-gray-200 shadow-sm focus:ring-2 focus:ring-purple-500 transition-all' : 'bg-gray-800/50 border border-gray-700 w-full px-4 py-3 rounded-xl text-gray-200 focus:ring-2 focus:ring-purple-500'}
                     placeholder={field.placeholder} min={field.min} max={field.max} {...field.props}
                 />
             </div>
@@ -190,7 +190,7 @@ const AddCar = () => {
                     name={field.name}
                     value={data[field.name]}
                     onChange={handleChange}
-                    className='bg-gray-800/50 border border-gray-700 w-full px-4 py-3 rounded-xl text-gray-200 focus:ring-2 focus:ring-orange-500'
+                    className='bg-gray-800/50 border border-gray-700 w-full px-4 py-3 rounded-xl text-gray-200 focus:ring-2 focus:ring-purple-500'
                 >
                     {field.options.map((option) =>
                         typeof option === 'object' ? (
@@ -217,7 +217,7 @@ const AddCar = () => {
                 placeholder: "e.g., Toyota Camry",
                 icon: (
                     <svg
-                        className='w-5 h-5 mr-2 text-orange-500'
+                        className='w-5 h-5 mr-2 text-purple-500'
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -315,18 +315,18 @@ const AddCar = () => {
     return (
         <div className='min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 p-4 sm:p-6'>
             <div className='fixed inset-0 overflow-hidden pointer-events-none'>
-                <div className='absolute top-1/4 left-1/4 w-64 h-64 rounded-full bg-gradient-to-r from-orange-600 to-orange-800 blur-3xl opacity-10' />
-                <div className='absolute bottom-1/3 right-1/4 w-56 h-56 rounded-full bg-gradient-to-r from-amber-600 to-amber-800 blur-3xl opacity-10' />
-                <div className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-48 h-48 rotate-45 bg-gradient-to-r from-orange-500 to-amber-500 blur-xl opacity-10' />
+                <div className='absolute top-1/4 left-1/4 w-64 h-64 rounded-full bg-gradient-to-r from-purple-600 to-indigo-800 blur-3xl opacity-10' />
+                <div className='absolute bottom-1/3 right-1/4 w-56 h-56 rounded-full bg-gradient-to-r from-purple-600 to-indigo-800 blur-3xl opacity-10' />
+                <div className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-48 h-48 rotate-45 bg-gradient-to-r from-purple-500 to-indigo-500 blur-xl opacity-10' />
             </div>
 
             {/* HEADER */}
             <div className='relative mb-8 pt-20 text-center'>
                 <div className='absolute inset-x-0 top-0 flex justify-center'>
-                    <div className='h-1 w-20 bg-gradient-to-r from-orange-500 to-amber-500 rounded-full' />
+                    <div className='h-1 w-20 bg-gradient-to-r from-purple-500 to-indigo-500 rounded-full' />
                 </div>
                 <h1 className='text-4xl font-extrabold py-4 text-white sm:text-5xl mb-3 tracking-wide'>
-                    <span className='text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-amber-400'>
+                    <span className='text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-indigo-500 to-purple-600'>
                         Add Your Car
                     </span>
                 </h1>
@@ -386,7 +386,7 @@ const AddCar = () => {
                                                 value={t}
                                                 checked={data.transmission === t}
                                                 onChange={handleChange}
-                                                className='h-4 w-4 text-orange-500 focus:ring-orange-500'
+                                                className='h-4 w-4 text-purple-500 focus:ring-purple-500'
                                             />
                                             <span className='ml-2 text-gray-300'>{t}</span>
                                         </label>
@@ -464,7 +464,7 @@ const AddCar = () => {
                                     value={data.description}
                                     onChange={handleChange}
                                     rows="4"
-                                    className='glass-input w-full px-4 py-3 rounded-xl text-gray-200 shadow-sm focus:ring-2 focus:ring-orange-500 transition-all'
+                                    className='glass-input w-full px-4 py-3 rounded-xl text-gray-200 shadow-sm focus:ring-2 focus:ring-purple-500 transition-all'
                                     placeholder='Describe feature, condition, special details...' />
                             </div>
                         </div>
@@ -473,7 +473,7 @@ const AddCar = () => {
                     <div className='mt-12 flex justify-center'>
                         <button
                             type='submit'
-                            className='px-10 py-4 text-white font-bold rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-orange-500 focus:ring-opacity-50 text-lg bg-gradient-to-r from-orange-600 to-amber-600 hover:from-orange-500 hover:to-amber-500'
+                            className='px-10 py-4 text-white font-bold rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-purple-500 focus:ring-opacity-50 text-lg bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 shadow-purple-500/20'
                         >
                             <span className='drop-shadow-md'>List Your Car</span>
                             <svg
@@ -510,7 +510,7 @@ const AddCar = () => {
 
 export const toastStyles = {
     success: {
-        container: "bg-gradient-to-r from-gray-800 to-gray-900 border-l-4 border-orange-500",
+        container: "bg-gradient-to-r from-gray-800 to-gray-900 border-l-4 border-purple-500",
         body: "font-sans text-gray-100",
     },
     error: {
@@ -519,10 +519,10 @@ export const toastStyles = {
     },
     radioLabel: (isSelected) =>
         `flex-1 flex items-center justify-center p-3 rounded-xl cursor-pointer transition-all hover:shadow-md ${isSelected
-            ? "bg-gradient-to-r from-orange-700/30 to-amber-700/30 border border-orange-500/50"
+            ? "bg-gradient-to-r from-purple-700/30 to-indigo-700/30 border border-purple-500/50"
             : "glass-input"
         }`,
-    input: "glass-input w-full px-4 py-3 rounded-xl text-gray-200 shadow-sm focus:ring-2 focus:ring-orange-500 transition-all",
+    input: "glass-input w-full px-4 py-3 rounded-xl text-gray-200 shadow-sm focus:ring-2 focus:ring-purple-500 transition-all",
 };
 
 export default AddCar

@@ -3,7 +3,7 @@ import { BookingPageStyles, statusConfig } from '../assets/dummyStyles';
 import axios from 'axios';
 import { FaCalendarAlt, FaCheckCircle, FaChevronDown, FaCreditCard, FaEdit, FaEnvelope, FaFilter, FaGasPump, FaGlobeAsia, FaMapMarkerAlt, FaMapPin, FaPhone, FaSearch, FaSync, FaTachometerAlt, FaUser, FaUserFriends, FaCity, FaCar } from 'react-icons/fa';
 
-const BASE = 'https://luxeride-rantals.onrender.com';
+const BASE = 'http://localhost:5000';
 const api = axios.create({
   baseURL: BASE,
   headers: { Accept: 'application/json' },
@@ -74,7 +74,7 @@ const Panel = ({ title, icon, children }) => (
   <div className='bg-gray-900/50 backdrop-blur-sm rounded-xl p-4 border border-gray-800'>
     <h3 className='text-md font-bold text-white mb-4 flex items-center'>
       {icon}
-      <span className='mr-2 text-orange-400'>{title}</span>
+      <span className='mr-2 text-purple-400'>{title}</span>
     </h3>
     <div className='space-y-3'>{children}</div>
   </div>
@@ -82,7 +82,7 @@ const Panel = ({ title, icon, children }) => (
 
 const Detail = ({ icon, label, value }) => (
   <div className='flex items-start'>
-    <div className='text-orange-400 mt-1 mr-3'>{icon}</div>
+    <div className='text-purple-400 mt-1 mr-3'>{icon}</div>
     <div className='flex-1'>
       <div className='text-xs text-gray-400'>{label}</div>
       <div className='text-sm font-medium text-white'>{value ?? ""}</div>
@@ -91,8 +91,8 @@ const Detail = ({ icon, label, value }) => (
 );
 
 const Spec = ({ icon, label, value }) => (
-  <div className='flex flex-col items-center bg-gradient-to-br from-gray-900/30 to-gray-900/10 p-3 rounded-xl border border-gray-800 hover:border-orange-500/50 transition-all'>
-    <div className='text-xl mb-2 text-orange-400'>{icon}</div>
+  <div className='flex flex-col items-center bg-gradient-to-br from-gray-900/30 to-gray-900/10 p-3 rounded-xl border border-gray-800 hover:border-purple-500/50 transition-all'>
+    <div className='text-xl mb-2 text-purple-400'>{icon}</div>
     <p className='text-xs text-gray-400'>{label}</p>
     <p className='font-semibold text-sm text-white'>{value ?? ""}</p>
   </div>
@@ -104,7 +104,7 @@ const StatusIndicator = ({ status, isEditing, newStatus, onStatusChange }) => {
     <select
       value={newStatus}
       onChange={onStatusChange}
-      className='bg-gray-800/50 text-sm px-2 py-1 rounded focus:outline-none foucs:ring-1 foucs:ring-orange-500'>
+      className='bg-gray-800/50 text-sm px-2 py-1 rounded focus:outline-none foucs:ring-1 foucs:ring-purple-500'>
       {Object.keys(statusConfig).filter((k) => k !== 'default').map((opt) => (
         <option value={opt} key={opt}>
           {opt.charAt(0).toUpperCase() + opt.slice(1)}
@@ -124,8 +124,8 @@ const StatusIndicator = ({ status, isEditing, newStatus, onStatusChange }) => {
 // Booking Card Header
 const BookingCardHeader = ({ booking, onToggleDetails, isExpanded }) => {
   <div className='flex items-center mb-4 md:mb-0'>
-    <div className='bg-gradient-to-br from-orange-800/50 to-amber-800/50 p-3 rounded-xl mr-4'>
-      <FaCalendarAlt className='text-orange-400 text-xl' />
+    <div className='bg-gradient-to-br from-purple-800/50 to-indigo-800/50 p-3 rounded-xl mr-4'>
+      <FaCalendarAlt className='text-purple-400 text-xl' />
     </div>
     <div>
       <div className='text-lg font-bold text-white'>
@@ -136,7 +136,7 @@ const BookingCardHeader = ({ booking, onToggleDetails, isExpanded }) => {
       </div>
     </div>
 
-    <div className='flex items-center text-orange-400 ml-auto md:hidden'>
+    <div className='flex items-center text-purple-400 ml-auto md:hidden'>
       <FaChevronDown className={`transition-transform durarion-300 ${isExpanded ? 'rotate-180' : ''}`}
       />
       <span className='ml-2 text-sm'>
@@ -163,7 +163,7 @@ const BookingCardInfo = ({ booking, isEditing, newStatus, onStatusChange }) => (
     </div>
     <div className="text-center">
       <div className='text-xs text-gray-400'>Amount</div>
-      <div className='text-sm font-semibold text-orange-400'>${booking.amount}</div>
+      <div className='text-sm font-semibold text-purple-400'>${booking.amount}</div>
     </div>
     <div className="text-center">
       <div className='text-xs text-gray-400'>Status</div>
@@ -187,7 +187,7 @@ const BookingCardActions = ({
   isExpanded
 }) => (
   <div className='flex justify-between items-center mt-4'>
-    <div className='items-center text-orange-400 hidden md:flex'>
+    <div className='items-center text-purple-400 hidden md:flex'>
       <FaChevronDown className={`transition-transform duration-300 ${isExpanded ? 'rotate-180' : ''}`} />
       <span className='ml-2 text-sm'>
         {isExpanded ? 'Hide Details' : 'Show Details'}
@@ -214,7 +214,7 @@ const BookingCardActions = ({
       ) : (
         <button
           onClick={onEditStatus}
-          className='bg-gradient-to-r from-orange-700/50 to-amber-700/50 text-orange-300 hover:text-white text-sm px-3 py-1 rounded-lg flex items-center'
+          className='bg-gradient-to-r from-purple-700/50 to-indigo-700/50 text-purple-300 hover:text-white text-sm px-3 py-1 rounded-lg flex items-center'
           title='Edit Status'
         >
           <FaEdit className='inline mr-1' /> Edit
@@ -230,7 +230,7 @@ const BookingCardDetails = ({ booking }) => (
     <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
       <Panel
         title="Customer Details"
-        icon={<FaUser className='mr-2 text-orange-400' />}
+        icon={<FaUser className='mr-2 text-purple-400' />}
       >
         <Detail icon={<FaUser />} label="Full Name" value={booking.customer} />
         <Detail icon={<FaEnvelope />} label="Email" value={booking.email} />
@@ -239,7 +239,7 @@ const BookingCardDetails = ({ booking }) => (
 
       <Panel
         title="Booking Details"
-        icon={<FaCalendarAlt className='mr-2 text-orange-400' />}
+        icon={<FaCalendarAlt className='mr-2 text-purple-400' />}
       >
         <Detail
           icon={<FaCalendarAlt />}
@@ -259,13 +259,13 @@ const BookingCardDetails = ({ booking }) => (
         <Detail
           icon={<FaCreditCard />}
           label="Total Amount"
-          value={`$${booking.amount}`}
+          value={`₹${booking.amount}`}
         />
       </Panel>
 
       <Panel
         title="Address Details"
-        icon={<FaMapMarkerAlt className='mr-2 text-orange-400' />}
+        icon={<FaMapMarkerAlt className='mr-2 text-purple-400' />}
       >
         <Detail
           icon={<FaMapMarkerAlt />}
@@ -287,10 +287,10 @@ const BookingCardDetails = ({ booking }) => (
 
       <Panel
         title="Car Details"
-        icon={<FaCar className='mr-2 text-orange-400' />}
+        icon={<FaCar className='mr-2 text-purple-400' />}
       >
         <div className="flex items-center mb-4">
-          <div className='bg-gradient-to-br from-orange-900/30 to-amber-900/30 rounded-xl w-20 h-12 flex items-center justify-center'>
+          <div className='bg-gradient-to-br from-purple-900/30 to-indigo-900/30 rounded-xl w-20 h-12 flex items-center justify-center'>
             <img
               src={makeImageUrl(booking.carImage)}
               alt={booking.car || "car image"}
@@ -334,7 +334,7 @@ const BookingCardDetails = ({ booking }) => (
 const BookingCard = ({
   booking, isExpanded, isEditing, newStatus, onToggleDetails, onEditStatus, onStatusChange, onSaveStatus, onCancelEdit
 }) => (
-  <div className='bg-gradient-to-br from-gray-900/50 to-gray-900/30 backdrop-blur-sm rounded-2xl overflow-hidden border border-gray-800 hover:border-orange-500/50 transition-all duration-300'>
+  <div className='bg-gradient-to-br from-gray-900/50 to-gray-900/30 backdrop-blur-sm rounded-2xl overflow-hidden border border-gray-800 hover:border-purple-500/50 transition-all duration-300'>
     <div className='p-5 cursor-pointer' onClick={onToggleDetails}>
       <div className='flex flex-col md:flex-row justify-between items-start md:items-center'>
         <BookingCardHeader
@@ -382,9 +382,9 @@ const SearchFilterBar = ({
             placeholder="Search by customer, car, or email..."
             value={searchTerm}
             onChange={onSearchChange}
-            className='bg-gray-800/50 border border-gray-700 w-full px-4 py-2.5 pl-10 text-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500'
+            className='bg-gray-800/50 border border-gray-700 w-full px-4 py-2.5 pl-10 text-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500'
           />
-          <div className='absolute left-3 top-3 text-orange-500'>
+          <div className='absolute left-3 top-3 text-purple-500'>
             <FaSearch />
           </div>
         </div>
@@ -398,7 +398,7 @@ const SearchFilterBar = ({
           <select
             value={statusFilter}
             onChange={onStatusChange}
-            className='bg-gray-800/50 border border-gray-700 w-full px-4 py-2.5 pl-10 text-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500'
+            className='bg-gray-800/50 border border-gray-700 w-full px-4 py-2.5 pl-10 text-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500'
           >
             <option value="all">All Statuses</option>
             {Object.keys(statusConfig)
@@ -409,18 +409,18 @@ const SearchFilterBar = ({
                 </option>
               ))}
           </select>
-          <div className='absolute left-3 top-3 text-orange-500'>
+          <div className='absolute left-3 top-3 text-purple-500'>
             <FaFilter />
           </div>
         </div>
       </div>
 
-      <div className='bg-gradient-to-br from-orange-900/30 to-amber-900/30 rounded-lg p-4 border border-orange-800/30 flex items-center justify-center'>
+      <div className='bg-gradient-to-br from-purple-900/30 to-indigo-900/30 rounded-lg p-4 border border-purple-800/30 flex items-center justify-center'>
         <div className="text-center">
           <div className='text-gray-400 text-sm mb-1'>
             Total Bookings
           </div>
-          <div className='text-2xl font-bold text-orange-400'>
+          <div className='text-2xl font-bold text-purple-400'>
             {totalBookings}
           </div>
         </div>
@@ -432,9 +432,9 @@ const SearchFilterBar = ({
 // No Bookings Views
 const NoBookingsView = ({ onResetFilters }) => (
   <div className='bg-gradient-to-br from-gray-900/50 to-gray-900/30 backdrop-blur-sm text-center py-16 rounded-2xl border border-gray-800'>
-    <div className='mx-auto w-24 h-24 rounded-full bg-gradient-to-br from-orange-900/30 to-amber-900/30 flex items-center justify-center mb-6'>
-      <div className='bg-gradient-to-br from-orange-700 to-amber-700 w-16 h-16 rounded-full flex items-center justify-center'>
-        <FaSearch className='h-8 w-8 text-orange-300' />
+    <div className='mx-auto w-24 h-24 rounded-full bg-gradient-to-br from-purple-900/30 to-indigo-900/30 flex items-center justify-center mb-6'>
+      <div className='bg-gradient-to-br from-purple-700 to-indigo-700 w-16 h-16 rounded-full flex items-center justify-center'>
+        <FaSearch className='h-8 w-8 text-purple-300' />
       </div>
     </div>
     <h3 className='mt-4 text-xl font-medium text-white'>No Bookings Found</h3>
@@ -444,7 +444,7 @@ const NoBookingsView = ({ onResetFilters }) => (
 
     <button
       onClick={onResetFilters}
-      className='mt-4 px-5 py-2.5 rounded-xl bg-gradient-to-r from-orange-600 to-amber-600 text-white flex items-center mx-auto'>
+      className='mt-4 px-5 py-2.5 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white flex items-center mx-auto'>
       <FaSync className='mr-2' /> Reset Filter
     </button>
   </div>
@@ -453,9 +453,9 @@ const NoBookingsView = ({ onResetFilters }) => (
 // Backgroud Gradient 
 const BackgroudGradient = () => (
   <div className='fixed inset-0 overflow-hidden pointer-events-none'>
-    <div className='absolute top-1/4 left-1/4 w-64 h-64 rounded-full bg-gradient-to-r from-orange-600 to-orange-800 blur-3xl opacity-10' />
-    <div className='absolute bottom-1/3 right-1/4 w-56 h-56 rounded-full bg-gradient-to-r from-amber-600 to-amber-800 blur-3xl opacity-10' />
-    <div className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-48 h-48 rotate-45 bg-gradient-to-r from-orange-500 to-amber-500 blur-xl opacity-10' />
+    <div className='absolute top-1/4 left-1/4 w-64 h-64 rounded-full bg-gradient-to-r from-purple-600 to-indigo-700 blur-3xl opacity-10' />
+    <div className='absolute bottom-1/3 right-1/4 w-56 h-56 rounded-full bg-gradient-to-r from-purple-500 to-indigo-600 blur-3xl opacity-10' />
+    <div className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-48 h-48 rotate-45 bg-gradient-to-r from-purple-500 to-indigo-500 blur-xl opacity-10' />
   </div>
 )
 
@@ -463,10 +463,10 @@ const BackgroudGradient = () => (
 const PageHeader = () => (
   <div className='relative mb-8 pt-16 text-center'>
     <div className='absolute inset-x-0 top-0 flex justify-center'>
-      <div className='h-1 w-20 bg-gradient-to-r from-orange-500 to-amber-500 rounded-full' />
+      <div className='h-1 w-20 bg-gradient-to-r from-purple-500 to-indigo-500 rounded-full' />
     </div>
     <h1 className='text-4xl font-extrabold py-4 text-white sm:text-5xl mb-3 tracking-wide'>
-      <span className='text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-amber-400'>
+      <span className='text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-indigo-500 to-purple-600'>
         Booking Dashboard
       </span>
     </h1>

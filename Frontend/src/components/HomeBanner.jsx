@@ -135,7 +135,7 @@ export default function HeroSleek() {
         <div className="relative z-10 pt-99 lg:pt-0 max-w-xl md:pt-110 w-[98%] sm:w-[62%] lg:w-[46%] mx-auto px-4">
             <div className="relative rounded-2xl p-6 bg-[rgba(255,255,255,0.04)] border border-white/6 backdrop-blur-md shadow-2xl flex items-center justify-between gap-4">
             <div>
-                <p className="text-xs uppercase tracking-widest text-sky-300/70">KARZONE</p>
+                <p className="text-xs uppercase tracking-widest text-indigo-300/70">LUXERIDE</p>
                 <h3 className="text-white md:text-sm text-lg sm:text-2xl font-semibold mt-1">
                     Next-gen fleet. Instant drive.
                 </h3>
@@ -145,8 +145,8 @@ export default function HeroSleek() {
             </div>
 
             <a href="/cars" className="flex items-center gap-3">
-              <button className="metal-btn inline-flex items-center gap-3 px-5 py-3 rounded-lg font-medium transform-gpu hover:scale-[1.03] active:scale-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-sky-300 cursor-pointer">
-                <span className="text-sm">See Fleet</span>
+              <button className="bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 shadow-purple-500/20 inline-flex items-center gap-3 px-5 py-3 rounded-lg font-medium transform-gpu hover:scale-[1.03] active:scale-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-indigo-300 cursor-pointer">
+                <span className="text-sm text-white">See Fleet</span>
               </button>
             </a>
             <span aria-hidden className="absolute -inset-1 rounded-2xl pointer-events-none ring-1 ring-white/6" />

@@ -4,11 +4,12 @@ import dotenv from 'dotenv'
 
 dotenv.config();
 
-const CLIENT_URL = process.env.FRONTEND_URL || "http://localhost:5174"
+const CLIENT_URL = process.env.FRONTEND_URL || "http://localhost:5173";
 const STRIPE_API_VERSION = "2022-11-15";
 
 // GET STRIPE FROM .ENV
 const getStripe = () => {
+    // console.log("ENV KEY:", process.env.STRIPE_SECRET_KEY);
     const key = (process.env.STRIPE_SECRET_KEY || '').trim()
     if (!key) throw new Error('Missing Stripe key');
     return new Stripe(key, { apiVersion: STRIPE_API_VERSION });
@@ -32,6 +33,7 @@ export const createCheckoutSession = async (req, res) => {
             address,
             carImage,
         } = req.body;
+        // console.log(req.body)
 
         // MINIMUM VALIDATION
         const total = Number(amount);
@@ -72,11 +74,13 @@ export const createCheckoutSession = async (req, res) => {
         const safeImage = carImage || "";
 
         let stripe;
-        try { stripe = getStripe(); } catch ( err ) {
+        try {
+            stripe = getStripe();
+        } catch (err) {
             await bookingModel.findByIdAndDelete(booking._id).catch(() => { });
             return res.status(500).json({
-                success: false, 
-                message: 'Payment not configure', 
+                success: false,
+                message: 'Payment not configure',
                 error: err.message
             })
         };
@@ -185,28 +189,28 @@ export const confirmPayment = async (req, res) => {
 
         if (!order) {
             order = await bookingModel.findByIdAndUpdate(
-                { sessionId: session_id }, 
+                { sessionId: session_id },
                 {
-                paymentStatus: 'paid',
-                status: 'active',
-                paymentIntentId: session.payment_intent || '',
-                paymentDetails: {
-                    amount_total: session.amount_total || null,
-                    currency: session.currency || null
-                }
-            }, 
-            { new: true })
+                    paymentStatus: 'paid',
+                    status: 'active',
+                    paymentIntentId: session.payment_intent || '',
+                    paymentDetails: {
+                        amount_total: session.amount_total || null,
+                        currency: session.currency || null
+                    }
+                },
+                { new: true })
         }
 
-        if(!order) return res.status(404).json({
+        if (!order) return res.status(404).json({
             success: false,
             message: 'Booking not found for this session', session
         })
-        return res.json({success: true, order})
+        return res.json({ success: true, order })
     }
     catch (err) {
         console.error('Confirm Payment Error', err)
-        return res. status(500).json({
+        return res.status(500).json({
             success: false,
             message: err.message || 'Server Error'
         })

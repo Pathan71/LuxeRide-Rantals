@@ -56,7 +56,7 @@ const Navbar = () => {
                                             <React.Fragment key={link.path}>
                                                 <Link
                                                     to={link.path}
-                                                    className='flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors duration-300'
+                                                    className='flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-700 hover:text-purple-700 transition-colors duration-300'
                                                 >
                                                     <Icon className='w-4 h-4' />
                                                     <span>{link.label}</span>
@@ -75,7 +75,7 @@ const Navbar = () => {
                                 <button
                                     ref={buttonRef}
                                     onClick={() => setIsOpen((v) => !v)}
-                                    className='text-gray-700 hover:text-blue-600 focus:outline-none cursor-pointer'
+                                    className='text-gray-700 hover:text-purple-700 focus:outline-none cursor-pointer'
                                     aria-label='Toggle Meny'
                                     aria-expanded={isOpen}
                                 >
@@ -103,7 +103,7 @@ const Navbar = () => {
                                     key={link}
                                     to={link.path}
                                     onClick={() => setIsOpen(false)}
-                                    className='block px-4 py-3 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors flex items-center gap-3'
+                                    className='block px-4 py-3 rounded-lg text-gray-700 hover:bg-purple-100 transition-colors flex items-center gap-3'
                                 >
                                     <Icon className='w-5 h-5' />
                                     <span>{link.label}</span>

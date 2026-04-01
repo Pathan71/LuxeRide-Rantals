@@ -45,12 +45,12 @@ const Contact = () => {
             <div className='absolute inset-0 opacity-9 pointer-events-none'>
                 <div className="w-full h-full" style={{
                     backgroundImage: `
-                        linear-gradient(30deg, rgba(249,115,22,0.08) 12%, transparent 12.5%, transparent 87%, rgba(249,115,22,0.08) 87.5%, rgba(249,115,22,0.08)),
-                        linear-gradient(150deg, rgba(249,115,22,0.08) 12%, transparent 12.5%, transparent 87%, rgba(249,115,22,0.08) 87.5%, rgba(249,115,22,0.08)),
-                        linear-gradient(30deg, rgba(249,115,22,0.08) 12%, transparent 12.5%, transparent 87%, rgba(249,115,22,0.08) 87.5%, rgba(249,115,22,0.08)),
-                        linear-gradient(150deg, rgba(249,115,22,0.08) 12%, transparent 12.5%, transparent 87%, rgba(249,115,22,0.08) 87.5%, rgba(249,115,22,0.08)),
-                        linear-gradient(60deg, rgba(234,88,12,0.08) 25%, transparent 25.5%, transparent 75%, rgba(234,88,12,0.08) 75%, rgba(234,88,12,0.08)),
-                        linear-gradient(60deg, rgba(234,88,12,0.08) 25%, transparent 25.5%, transparent 75%, rgba(234,88,12,0.08) 75%, rgba(234,88,12,0.08))`,
+                        linear-gradient(30deg, rgba(168,85,247,0.08) 12%, transparent 12.5%, transparent 87%, rgba(168,85,247,0.08) 87.5%, rgba(168,85,247,0.08)),
+                        linear-gradient(150deg, rgba(168,85,247,0.08) 12%, transparent 12.5%, transparent 87%, rgba(168,85,247,0.08) 87.5%, rgba(168,85,247,0.08)),
+                        linear-gradient(30deg, rgba(168,85,247,0.08) 12%, transparent 12.5%, transparent 87%, rgba(168,85,247,0.08) 87.5%, rgba(168,85,247,0.08)),
+                        linear-gradient(150deg, rgba(168,85,247,0.08) 12%, transparent 12.5%, transparent 87%, rgba(168,85,247,0.08) 87.5%, rgba(168,85,247,0.08)),
+                        linear-gradient(60deg, rgba(99,102,241,0.08) 25%, transparent 25.5%, transparent 75%, rgba(99,102,241,0.08) 75%, rgba(99,102,241,0.08)),
+                        linear-gradient(60deg, rgba(99,102,241,0.08) 25%, transparent 25.5%, transparent 75%, rgba(99,102,241,0.08) 75%, rgba(99,102,241,0.08))`,
                     backgroundSize: '80px 140px',
                     backgroundPosition: '0 0, 0 0, 40px 70px, 40px 70px, 0 0, 40px 70px'
                 }}></div>
@@ -66,7 +66,7 @@ const Contact = () => {
                             left: `${Math.random() * 100}%`,
                             top: `${Math.random() * 100}%`,
                             clipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)',
-                            background: i % 3 === 0 ? '#f97316' : i % 3 === 1 ? '#fb923c' : '#fdba74',
+                            background: i % 3 === 0 ? '#a855f7' : i % 3 === 1 ? '#8b5cf6' : '#6366f1',
                             transform: `rotate(${Math.random() * 360}deg) scale(${Math.random() * 0.5 + 0.5})`
                         }}
                     ></div>
@@ -76,10 +76,10 @@ const Contact = () => {
             {/* TITLE */}
             <div className='relative z-10 pt-20 max-w-4xl mx-auto'>
                 <div className='text-center mb-8 sm:mb-10 md:mb-12'>
-                    <h1 className="text-3xl font-['Pacifico'] sm:text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-500 mb-2 flex items-center justify-center">
+                    <h1 className="text-3xl font-['Pacifico'] sm:text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-indigo-500 to-purple-600 mb-2 flex items-center justify-center">
                         Contact Our Team
                     </h1>
-                    <div className='w-16 sm:w-20 md:w-24 h-0.5 bg-gradient-to-r from-orange-500 to-orange-400 mx-auto mb-3' />
+                    <div className='w-16 sm:w-20 md:w-24 h-0.5 bg-gradient-to-r from-purple-500 to-indigo-400 mx-auto mb-3' />
                     <p className='text-base sm:text-lg md:text-xl text-gray-300 max-w-xl mx-auto'>
                         Have questions about our premium fleet? Our team is ready to assest with your car rental needs.
                     </p>
@@ -87,19 +87,19 @@ const Contact = () => {
 
                 <div className='flex flex-col md:flex-row gap-6'>
                     <div className='md:w-2/5 bg-gray-800/60 backdrop-blur-sm rounded-2xl shadow-lg p-5 sm:p-6 relative overflow-hidden border border-gray-700'>
-                        <div className='absolute -top-4 -right-4 w-16 h-16 bg-orange-500/10 rounded-full' />
-                        <div className='absolute -bottom-4 -left-4 w-14 h-14 bg-orange-400/10 rounded-full' />
+                        <div className='absolute -top-4 -right-4 w-16 h-16 bg-purple-500/10 rounded-full' />
+                        <div className='absolute -bottom-4 -left-4 w-14 h-14 bg-purple-400/10 rounded-full' />
 
                         <div className='relative z-10 space-y-5'>
                             <h2 className='text-xl sm:text-xl font-semibold text-white flex items-center'>
-                                <FaMapMarkedAlt className='mr-3 text-orange-400 text-lg' />
+                                <FaMapMarkedAlt className='mr-3 text-purple-400 text-lg' />
                             </h2>
 
                             <div className='space-y-3'>
                                 {icons.map((info, i) => (
                                     <div className='flex items-start bg-gray-700/40 p-3 rounded-lg hover:bg-gray-700/60 transition-all'>
                                         <div className={styles.iconContainer(info.color)}>
-                                            <info.icon className={i === 0 ? 'text-green-400 text-lg' : 'text-orange-400 text-lg'}
+                                            <info.icon className={i === 0 ? 'text-green-400 text-lg' : 'text-purple-400 text-lg'}
                                             />
                                         </div>
 
@@ -116,9 +116,9 @@ const Contact = () => {
                                 ))}
                             </div>
 
-                            <div className='mt-4 bg-gradient-to-r from-orange-900/30 to-orange-800/30 p-3 rounded-lg border border-orange-500/20'>
+                            <div className='mt-4 bg-gradient-to-r from-purple-900/30 to-indigo-800/30 p-3 rounded-lg border border-purple-500/20'>
                                 <div className='flex items-center'>
-                                    <FaCalendarAlt className='text-orange-400 mr-2' />
+                                    <FaCalendarAlt className='text-purple-400 mr-2' />
                                     <span className='text-gray-300 font-medium text-sm sm:text-base'>
                                         Special Offer!
                                     </span>
@@ -131,12 +131,12 @@ const Contact = () => {
                     </div>
 
                     <div className='md:w-3/5 bg-gray-800/60 backdrop-blur-sm rounded-2xl shadow-lg p-5 sm:p-6 relative overflow-hidden border border-gray-700'>
-                        <div className='absolute top-0 right-0 w-16 h-16 bg-orange-500/10 rounded-bl-full' />
-                        <div className='absolute bottom-0 left-0 w-14 h-14 bg-orange-500/10 rounded-tr-full' />
+                        <div className='absolute top-0 right-0 w-16 h-16 bg-purple-500/10 rounded-bl-full' />
+                        <div className='absolute bottom-0 left-0 w-14 h-14 bg-purple-500/10 rounded-tr-full' />
 
                         <div className='mb-4'>
                             <h2 className='text-lg sm:text-xl font-semibold text-white mb-1 flex items-center'>
-                                <IoIosSend className='mr-3 text-orange-400 text-lg' />
+                                <IoIosSend className='mr-3 text-purple-400 text-lg' />
                                 Send Your Inquiry
                             </h2>
                             <p className='text-gray-400 text-sm'>
@@ -163,7 +163,7 @@ const Contact = () => {
 
                                     return (
                                         <div key={field} className='relative'>
-                                            <div className='absolute inset-y-0 left-0 pl-3 flex items-center text-orange-400'>
+                                            <div className='absolute inset-y-0 left-0 pl-3 flex items-center text-purple-400'>
                                                 {React.createElement(icons[field])}
                                             </div>
 
@@ -205,7 +205,7 @@ const Contact = () => {
                             </div>
 
                             <div className='relative'>
-                                <div className='absolute top-2.5 left-3 text-orange-400'>
+                                <div className='absolute top-2.5 left-3 text-purple-400'>
                                     <FaComment />
                                 </div>
                                 <textarea
@@ -220,7 +220,7 @@ const Contact = () => {
                                     required></textarea>
                             </div>
 
-                            <button type='submit' className='w-full cursor-pointer flex items-center justify-center py-2.5 bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-500 hover:to-orange-400 rounded-lg text-white font-medium text-sm shadow-md transition-all transform hover:-translate-y-0.5 group mt-2'>
+                            <button type='submit' className='w-full cursor-pointer flex items-center justify-center py-2.5 bg-gradient-to-r from-purple-600 to-indigo-500 hover:from-purple-500 hover:to-indigo-400 shadow-purple-500/20 rounded-lg text-white font-medium text-sm shadow-md transition-all transform hover:-translate-y-0.5 group mt-2'>
                                 Send Message
                                 <FaWhatsapp className='ml-2 text-lg transform group-hover:scale-110 transition-transform' />
                             </button>

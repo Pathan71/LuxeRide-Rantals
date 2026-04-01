@@ -22,7 +22,7 @@ connectDB();
 
 // MIDDLEWARES
 app.use(cors({
-    origin: "https://luxe-ride-rantals.vercel.app" || "https://luxe-ride-rantals-l9ll.vercel.app",
+    origin: "http://localhost:5173" || "http://localhost:5174",
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true
 }))
