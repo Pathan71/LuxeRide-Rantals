@@ -90,7 +90,7 @@ const App = () => {
       </Routes>
 
       {showButton && (
-        <button onClick={scrollUp} className='fixed cursor-pointer bottom-8 right-8 p-3 rounded-full bg-gradient-to-r from-orange-600 to-orange-700 text-white shadow-lg transition-colors focus:outline-none'
+        <button onClick={scrollUp} className='fixed cursor-pointer bottom-8 right-8 p-3 rounded-full bg-gradient-to-r from-purple-600 to-indigo-700 text-white shadow-lg transition-colors focus:outline-none'
           aria-label='Scroll to top'
         >
           <FaArrowUp size={20} />
