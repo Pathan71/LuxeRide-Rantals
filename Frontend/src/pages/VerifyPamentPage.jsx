@@ -32,7 +32,7 @@ const VerifyPamentPage = () => {
       try {
         setStatusMsg('Confirming payment with server...');
 
-        const API_BASE = 'http://localhost:5000';
+        const API_BASE = 'https://luxeride-rantals.onrender.com';
         const res = await axios.get(`${API_BASE}/api/payment/confirm`, {
           params: {session_id},
           headers: token ? {Authorization: `Bearer ${token}`} : {},

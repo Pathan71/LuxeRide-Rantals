@@ -28,7 +28,7 @@ const Cars = () => {
   const [error, setError] = useState("");
 
   const abortControllerRef = useRef(null);
-  const base = "http://localhost:5000";
+  const base = "https://luxeride-rantals.onrender.com";
   const limit = 12;
   const fallbackImage = `${base}/uploads/default-car.png`;
 
