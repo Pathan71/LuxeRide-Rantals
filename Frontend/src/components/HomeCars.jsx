@@ -236,7 +236,7 @@ const HomeCars = () => {
       if (!Number.isFinite(days) || days < 0) {
         return (
           <div className="flex flex-col items-end">
-            <span className="px-2 py-1 text-xs rounded-md bg-amber-50 text-purple-800 font-semibold">
+            <span className="px-2 py-1 text-xs rounded-md bg-purple-50 text-purple-800 font-semibold">
               Available
             </span>
             {effective.nextBookingStarts && (
@@ -249,7 +249,7 @@ const HomeCars = () => {
       }
       return (
         <div className="flex flex-col items-end">
-          <span className="px-2 py-1 text-xs rounded-md bg-amber-50 text-amber-800 font-semibold">
+          <span className="px-2 py-1 text-xs rounded-md bg-purple-50 text-purple-800 font-semibold">
             Available — reserved in {plural(days, "day")}
           </span>
           {effective.nextBookingStarts && (
