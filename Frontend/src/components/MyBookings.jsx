@@ -626,7 +626,7 @@ const MyBookings = () => {
                 ? "You haven't made any bookings yet. Browse our collection to get started!"
                 : `You don't have any ${filter} bookings.`}
             </p>
-            <Link to="/cars" className="mt-6 px-6 py-3 bg-gradient-to-r from-purple-600 to-indigo-600 bg-purple-600 hover:bg-purple-500 text-white rounded-lg flex items-center justify-center gap-2">
+            <Link to="/cars" className="inline-block mt-6 px-6 py-3 bg-gradient-to-r from-purple-600 to-indigo-600 bg-purple-600 hover:bg-purple-500 text-white rounded-lg items-center justify-center gap-2">
               <FaCar /> Browse Cars
             </Link>
           </div>
