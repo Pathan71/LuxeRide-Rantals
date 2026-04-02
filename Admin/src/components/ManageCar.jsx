@@ -3,7 +3,7 @@ import axios from 'axios'
 import { FaCar, FaCog, FaEdit, FaFilter, FaGasPump, FaTachometerAlt, FaTrash, FaUser, FaTimes } from 'react-icons/fa'
 import { toast, ToastContainer } from 'react-toastify';
 
-const BASE = 'http://localhost:5000';
+const BASE = 'https://luxeride-rantals.onrender.com';
 const api = axios.create({
     baseURL: BASE,
     headers: { Accept: 'application/json' },

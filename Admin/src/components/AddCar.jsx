@@ -2,7 +2,7 @@ import React, { useCallback, useRef, useState } from 'react'
 import axios from 'axios'
 import { ToastContainer, toast } from 'react-toastify'
 
-const baseUrl = 'http://localhost:5000'
+const baseUrl = 'https://luxeride-rantals.onrender.com'
 const api = axios.create({ baseURL: baseUrl })
 
 const AddCar = () => {
