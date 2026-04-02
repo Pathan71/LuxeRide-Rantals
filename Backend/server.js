@@ -22,7 +22,7 @@ connectDB();
 
 const allowedOrigins = [
     "https://luxerider.netlify.app",
-    "http://localhost:5173",
+    "https://luxerideadmin.netlify.app",
 ]
 
 // MIDDLEWARES
