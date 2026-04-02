@@ -7,7 +7,7 @@ import {
 } from "react-icons/fa";
 import { myBookingsStyles as s } from "../assets/dummyStyles";
 
-const API_BASE = "http://localhost:5000"; // Change this to your backend URL
+const API_BASE = "https://luxeride-rantals.onrender.com"; // Change this to your backend URL
 const TIMEOUT = 15000;
 
 // ---------- Helpers ----------
