@@ -3,7 +3,7 @@ import { BookingPageStyles, statusConfig } from '../assets/dummyStyles';
 import axios from 'axios';
 import { FaCalendarAlt, FaCheckCircle, FaChevronDown, FaCreditCard, FaEdit, FaEnvelope, FaFilter, FaGasPump, FaGlobeAsia, FaMapMarkerAlt, FaMapPin, FaPhone, FaSearch, FaSync, FaTachometerAlt, FaUser, FaUserFriends, FaCity, FaCar } from 'react-icons/fa';
 
-const BASE = 'https://luxeride-rantals.onrender.com';
+const BASE = 'http://localhost:5000';
 const api = axios.create({
   baseURL: BASE,
   headers: { Accept: 'application/json' },
