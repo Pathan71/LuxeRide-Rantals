@@ -25,7 +25,7 @@ const allowedOrigins = [
     "https://luxerideadmin.netlify.app",
 ]
 
-// MIDDLEWARES
+// MIDDLEWARES  
 app.use(cors({
     origin: function(origin, callback){
         if(!origin || allowedOrigins.includes(origin)){
