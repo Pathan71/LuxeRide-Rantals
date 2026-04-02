@@ -20,15 +20,29 @@ const __dirname = path.dirname(__filename)
 
 connectDB();
 
+const allowedOrigins = [
+    "https://luxerider.netlify.app",
+    "http://localhost:5173",
+]
+
 // MIDDLEWARES
 app.use(cors({
-    origin: "https://luxerider.netlify.app" || "http://localhost:5173",
+    origin: function(origin, callback){
+        if(!origin || allowedOrigins.includes(origin)){
+            callback(null, true)
+        }
+        else {
+            callback(new Error("Not allowed by CORS"))
+        }
+    },
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true
 }))
+
 app.use(helmet({
     crossOriginOpenerPolicy: { policy: "same-origin-allow-popups" }
 }));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
 
