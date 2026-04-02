@@ -22,7 +22,7 @@ connectDB();
 
 // MIDDLEWARES
 app.use(cors({
-    origin: "https://luxerider.netlify.app" || "http://localhost:5000",
+    origin: "https://luxerider.netlify.app" || "http://localhost:5173",
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true
 }))
