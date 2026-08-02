@@ -34,9 +34,9 @@ const formatDate = (dateString) => {
 
 const formatPrice = (price) => {
   const num = typeof price === "number" ? price : Number(price) || 0;
-  return num.toLocaleString("en-US", {
+  return num.toLocaleString("en-IN", {
     style: "currency",
-    currency: "USD",
+    currency: "INR",
     maximumFractionDigits: 0,
   });
 };
