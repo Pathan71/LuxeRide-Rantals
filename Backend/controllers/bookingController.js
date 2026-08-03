@@ -188,7 +188,7 @@ export const getMyBookings = async (req, res, next) => {
 
         const bookings = await bookingModel
             .find({ userId })
-            .sort({ bookingDate: -1 })   // ✅ yahi correct jagah hai
+            .sort({ bookingDate: -1 }) 
             .lean();
 
         res.json(bookings);
