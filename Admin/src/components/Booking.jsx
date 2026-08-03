@@ -553,7 +553,7 @@ const Booking = () => {
         return;
       }
 
-      if (!newStatus) {
+      if (newStatus) {
         window.alert('Please select a status before saving.')
         return;
       }
@@ -561,7 +561,7 @@ const Booking = () => {
       await api.patch(`/api/bookings/${booking._id}/status`, {
         status: newStatus,
       });
-      await fetchBookings();
+      
 
       setBookings((prev) =>
         prev.map((b) =>
