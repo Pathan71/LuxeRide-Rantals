@@ -550,27 +550,21 @@ const Booking = () => {
     try {
       const booking = bookings.find((b) => b.id === id || b._id === id);
       if (!booking || !booking._id) {
+        setEditingStatus(null);
+        setNewStatus("");
         return;
       }
 
-      if (newStatus) {
+      if (!newStatus) {
         window.alert('Please select a status before saving.')
         return;
       }
-
       await api.patch(`/api/bookings/${booking._id}/status`, {
         status: newStatus,
       });
-      
 
       setBookings((prev) =>
-        prev.map((b) =>
-          b.id === id || b._id === id
-            ? { ...b, status: newStatus }
-            : b
-        )
-      );
-
+        prev.map((b) => b.id === id ? { ...b, status: newStatus } : b));
       setEditingStatus(null);
       setNewStatus("");
     }
