@@ -564,7 +564,14 @@ const Booking = () => {
       });
 
       setBookings((prev) =>
-        prev.map((b) => b.id === id ? { ...b, status: newStatus } : b));
+        prev.map((b) =>
+          b.id === id || b._id === id
+            ? { ...b, status: newStatus }
+            : b
+        )
+      );
+      await fetchBookings();
+
       setEditingStatus(null);
       setNewStatus("");
     }
