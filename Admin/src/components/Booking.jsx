@@ -553,7 +553,7 @@ const Booking = () => {
         return;
       }
 
-      if (newStatus) {
+      if (!newStatus) {
         window.alert('Please select a status before saving.')
         return;
       }
