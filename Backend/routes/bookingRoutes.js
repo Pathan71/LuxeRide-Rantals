@@ -17,7 +17,7 @@ bookingRouter.get('/', getBookings);
 
 bookingRouter.get('/mybooking', authMiddleware, getMyBookings);
 
-bookingRouter.put('/:id', uploads.single('carImage', updateBooking));
+bookingRouter.put('/:id', uploads.single('carImage'), updateBooking);
 bookingRouter.patch('/:id/status', updateBookingStatus);
 bookingRouter.delete('/:id', deleteBooking);
 
